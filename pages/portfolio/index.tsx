@@ -1,65 +1,12 @@
-import { motion } from "framer-motion";
 import { GetStaticProps } from "next";
-import { Title } from "pages/styles";
-import React from "react";
-import { PortfolioContainer } from "./styles";
+import Portfolio, { PortItemsModel } from "@/src/portfolio";
 
-interface PortItemsModel {
-  ratio: string;
-  imageLiknk: string;
-}
-
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-};
-
-export default function Portfolio({
+export default function PortfolioPage({
   portItems,
 }: {
   portItems: PortItemsModel[];
 }) {
-  return (
-    <PortfolioContainer>
-      <Title>Galeria</Title>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={container}
-        className="content"
-      >
-        {portItems.map(({ ratio, imageLiknk }) => (
-          <motion.div
-            variants={item}
-            className="item"
-            style={{
-              gridArea: `span ${ratio.split("/")[1]} / span ${
-                ratio.split("/")[0]
-              }`,
-              // gridColumn: `span ${ratio.split("/")[0]}`,
-              // gridRow: `span ${ratio.split("/")[1]}`,
-              backgroundImage: `url('${imageLiknk}')`,
-            }}
-          />
-        ))}
-      </motion.div>
-    </PortfolioContainer>
-  );
+  return <Portfolio portItems={portItems} />;
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
