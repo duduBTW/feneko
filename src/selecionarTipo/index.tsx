@@ -2,10 +2,11 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useRouter } from "next/dist/client/router";
 import { Button, SelecionarTipoContainer } from "pages/selecionarTipo/styles";
 import { Title } from "pages/styles";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setTypes } from "../redux/actions/orderActions";
-import { orderType } from "../redux/reducers/orderReducer";
+import { RootModel } from "../redux/reducers";
+import { OrderModel, orderType } from "../redux/reducers/orderReducer";
 import CardTipo from "./card";
 
 export interface TipoModel {
@@ -36,9 +37,19 @@ const tipos: TipoModel[] = [
 ];
 
 export default function SelecionarTipo() {
-  const [selecionados, setSelecionados] = useState<number[]>([]);
+  const order = useSelector<RootModel, OrderModel>((state) => state.order);
+  const [selecionados, setSelecionados] = useState<number[]>(
+    order.orders.map((order) => tipos.findIndex((tipo) => tipo.type === order))
+  );
+
   const dispatch = useDispatch();
   const history = useRouter();
+
+  // useEffect(() => {
+  //   setSelecionados(
+
+  //   );
+  // }, [order.orders]);
 
   const addSelecionado = (data: number) => {
     if (!!selecionados.includes(data)) {
