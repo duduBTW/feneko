@@ -45,12 +45,6 @@ export default function SelecionarTipo() {
   const dispatch = useDispatch();
   const history = useRouter();
 
-  // useEffect(() => {
-  //   setSelecionados(
-
-  //   );
-  // }, [order.orders]);
-
   const addSelecionado = (data: number) => {
     if (!!selecionados.includes(data)) {
       setSelecionados((s) => s.filter((sItem) => sItem !== data));

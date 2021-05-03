@@ -35,3 +35,27 @@ body {
   font-weight: 600;
   font-display: swap;
 }
+
+.default-container {
+  max-width: 1366px;
+  margin: 0px auto;
+  padding: 30px 0px 0px 0px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .default-container {
+    padding: 30px 50px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .default-container {
+    padding: 30px 50px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .default-container {
+    padding: 30px 30px;
+  }
+}

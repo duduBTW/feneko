@@ -1,3 +1,6 @@
+import Art from "@/src/pedido/art";
+import Design from "@/src/pedido/design";
+import Vtuber from "@/src/pedido/vTuber";
 import { RootModel } from "@/src/redux/reducers";
 import { OrderModel } from "@/src/redux/reducers/orderReducer";
 import { useRouter } from "next/dist/client/router";
@@ -14,9 +17,16 @@ export default function PedidoPage() {
 
   return (
     <div>
-      {order.orders.map((orderItem) => (
-        <div>{orderItem}</div>
-      ))}
+      {order.orders.map((orderItem) => {
+        switch (orderItem) {
+          case "art":
+            return <Art />;
+          case "design":
+            return <Design />;
+          case "vtuber":
+            return <Vtuber />;
+        }
+      })}
     </div>
   );
 }
