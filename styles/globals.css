@@ -7,6 +7,13 @@ body {
 
 @font-face {
   font-family: "Helvetica Now Display";
+  src: url("/fonts/HelveticaNowDisplay-Thin.ttf");
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
   src: url("/fonts/HelveticaNowDisplay-Light.ttf");
   font-weight: 300;
   font-display: swap;

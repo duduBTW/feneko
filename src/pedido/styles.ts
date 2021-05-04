@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const ItemPedidoContainer = styled.div`
@@ -171,5 +172,64 @@ export const AddArtistContainer = styled.div`
 
   :hover {
     background: lightgrey;
+  }
+`;
+
+export const ModalPrecoContainer = styled(motion.div)`
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 70vw;
+  height: 70vh;
+  background: white;
+  border: 1px solid #015150;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 26px #015150;
+  border-radius: 30px;
+
+  z-index: 99;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+
+  h1 {
+    padding: 0px;
+    margin: 0px;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 60px;
+    letter-spacing: 0.2em;
+
+    color: ${(props) => props.theme.palette.main};
+    transform: rotate(90deg);
+  }
+
+  img {
+    max-height: 85vh;
+  }
+  .slide {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+
+    .lab {
+      color: ${(props) => props.theme.palette.main};
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    .price {
+      color: ${(props) => props.theme.palette.second};
+      font-size: 0.8rem;
+    }
   }
 `;

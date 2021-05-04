@@ -7,18 +7,18 @@ interface ItemPedidoProps {
   title: string;
   image: string;
   desc: string;
+  openPrecoModal: () => void;
 }
 
-export default function ItemPedido({ title, image, desc }: ItemPedidoProps) {
+export default function ItemPedido({
+  title,
+  image,
+  desc,
+  openPrecoModal,
+}: ItemPedidoProps) {
   return (
     <ItemPedidoContainer className="default-container">
       <div className="artist">
-        <h2>Artista</h2>
-        <AddArtist />
-        <h2>Artista</h2>
-        <AddArtist />
-        <h2>Artista</h2>
-        <AddArtist />
         <h2>Artista</h2>
         <AddArtist />
         <div className="line"></div>
@@ -37,7 +37,7 @@ export default function ItemPedido({ title, image, desc }: ItemPedidoProps) {
           </div>
           <motion.p>{desc}</motion.p>
         </div>
-        <h2>R$ 100</h2>
+        <h2 onClick={() => openPrecoModal()}>R$ 100</h2>
       </div>
     </ItemPedidoContainer>
   );
