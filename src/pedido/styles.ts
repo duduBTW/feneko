@@ -3,8 +3,11 @@ import styled from "styled-components";
 
 export const ItemPedidoContainer = styled.div`
   display: flex;
-  padding: 50px 0px;
-
+  padding: 100px 0px;
+  @media only screen and (max-width: 1200px) {
+    justify-content: flex-end;
+    padding: 50px 0px;
+  }
   border-bottom: 1px dashed lightgrey;
 
   @media only screen and (max-width: 1200px) {
@@ -25,6 +28,10 @@ export const ItemPedidoContainer = styled.div`
     .line {
       position: absolute;
       top: 30px;
+      @media only screen and (max-width: 1200px) {
+        top: -840px;
+      }
+
       bottom: 30px;
       left: 30px;
 
@@ -45,7 +52,9 @@ export const ItemPedidoContainer = styled.div`
 
   .scroll {
     position: sticky;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     @media only screen and (max-width: 1200px) {
       position: relative;
     }
@@ -53,10 +62,19 @@ export const ItemPedidoContainer = styled.div`
     height: 100%;
 
     h2 {
-      padding-top: 30px;
+      padding: 0px;
+      margin: 0px;
+      padding-top: 80px;
       font-size: 42px;
 
+      @media only screen and (max-width: 1200px) {
+        padding-top: 0px;
+        padding-bottom: 40px;
+      }
+
       letter-spacing: 3px;
+
+      color: ${(props) => props.theme.palette.second};
     }
   }
 
@@ -65,7 +83,9 @@ export const ItemPedidoContainer = styled.div`
     padding-left: 30px;
 
     @media only screen and (max-width: 1200px) {
-      padding-bottom: 90px;
+      padding-bottom: 160px;
+      width: 650px;
+      min-width: 600px;
     }
 
     .image {
@@ -132,21 +152,19 @@ export const ItemPedidoContainer = styled.div`
         top: 500px;
       }
       transform: translateX(-30%);
-      border-radius: 5px;
       max-width: 200px;
-      /* bottom: 30px; */
-      top: 250px;
+      top: 240px;
 
       background: white;
       border: 1px solid ${(props) => props.theme.palette.main};
       box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
-      padding: 20px;
+      padding: 25px;
 
       font-family: "Helvetica Now Display";
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
-      line-height: 22px;
+      line-height: 24px;
       color: #131313;
     }
   }
@@ -176,7 +194,7 @@ export const AddArtistContainer = styled.div`
 `;
 
 export const ModalPrecoContainer = styled(motion.div)`
-  position: absolute;
+  position: fixed;
 
   top: 50%;
   left: 50%;
@@ -197,16 +215,30 @@ export const ModalPrecoContainer = styled(motion.div)`
   justify-content: space-between;
   padding: 60px;
 
-  h1 {
-    padding: 0px;
-    margin: 0px;
-    font-style: normal;
-    font-weight: 200;
-    font-size: 60px;
-    letter-spacing: 0.2em;
+  .title {
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
 
-    color: ${(props) => props.theme.palette.main};
-    transform: rotate(90deg);
+    span {
+      color: #930000;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    h1 {
+      padding: 0px;
+      margin: 0px;
+      font-style: normal;
+      font-weight: 200;
+      font-size: 60px;
+      letter-spacing: 0.2em;
+
+      color: ${(props) => props.theme.palette.main};
+      /* transform: translateX(-100%) translateY(-100%) rotate(90deg); */
+    }
   }
 
   img {

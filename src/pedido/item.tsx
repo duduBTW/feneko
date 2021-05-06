@@ -7,21 +7,21 @@ interface ItemPedidoProps {
   title: string;
   image: string;
   desc: string;
-  openPrecoModal: () => void;
+  additionalInfo?: JSX.Element;
 }
 
 export default function ItemPedido({
   title,
   image,
   desc,
-  openPrecoModal,
+  additionalInfo
 }: ItemPedidoProps) {
   return (
     <ItemPedidoContainer className="default-container">
       <div className="artist">
         <h2>Artista</h2>
         <AddArtist />
-        <div className="line"></div>
+        <div className="line"> </div>
       </div>
       <div className="scroll">
         <div className="container">
@@ -37,7 +37,7 @@ export default function ItemPedido({
           </div>
           <motion.p>{desc}</motion.p>
         </div>
-        <h2 onClick={() => openPrecoModal()}>R$ 100</h2>
+        {additionalInfo}
       </div>
     </ItemPedidoContainer>
   );

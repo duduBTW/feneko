@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ModalBackDrop = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   top: 0;
   right: 0;

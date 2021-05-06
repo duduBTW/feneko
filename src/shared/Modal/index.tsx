@@ -4,11 +4,10 @@ import { ModalBackDrop } from "./styles";
 
 interface ModalProps {
   open: boolean;
-  onClose: () => void;
   children: JSX.Element;
 }
 
-export function Modal({ open, onClose, children }: ModalProps) {
+export function Modal({ open, children }: ModalProps) {
   return (
     <>
       {open && <ModalBackDrop />}
