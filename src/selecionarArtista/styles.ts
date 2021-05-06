@@ -1,11 +1,52 @@
 import styled from "styled-components";
 
+export const SelecionarArtistaContainer = styled.div`
+  @media only screen and (max-width: 1024px) {
+    padding: 50px 0px;
+  }
+  @media only screen and (max-width: 700px) {
+    margin: 0px;
+  }
+`;
 export const CardArtistaContainer = styled.div`
   padding: 30px;
   border: 1px solid #bebebe;
   margin: 50px 0px;
 
   display: flex;
+
+  @media only screen and (max-width: 1024px) {
+    /* flex-direction: column; */
+
+    display: grid;
+    grid-template:
+      "info button" 1fr
+      "art art" 1fr
+      / 2fr 1fr;
+
+    .infoArtista1 {
+      grid-area: info;
+      /* order: 1; */
+    }
+
+    .botaoSelecionar {
+      grid-area: button;
+      /* order: 2; */
+    }
+
+    .exemplosArte {
+      grid-area: art;
+      /* order: 3; */
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    display: flex;
+    border: none;
+    border-top: 1px solid #bebebe;
+    flex-direction: column;
+    margin: 30px 0px;
+  }
   gap: 30px;
 
   border-radius: 5px;
@@ -51,6 +92,7 @@ export const CardArtistaContainer = styled.div`
     justify-content: space-between;
     flex: 1 1 auto;
     overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
     padding-bottom: 30px;
     scroll-behavior: smooth;
@@ -64,6 +106,7 @@ export const CardArtistaContainer = styled.div`
       padding: 0px 30px;
 
       img {
+        cursor: pointer;
         max-height: 300px;
       }
     }
@@ -106,6 +149,7 @@ interface CheckBoxProps {
 }
 
 export const CheckBox = styled.div<CheckBoxProps>`
+  overflow: hidden;
   flex: 137;
   min-width: 150px;
   display: flex;

@@ -6,7 +6,7 @@ export const ModalBackDrop = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
   z-index: 98;
 `;
