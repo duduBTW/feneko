@@ -57,7 +57,10 @@ export default function ImageChanger({
         <AnimatePresence custom={direction}>
           <motion.img
             style={{
-              height: "100%",
+              height: "auto",
+              width: "auto",
+              maxHeight: "100%",
+              maxWidth: "100%",
               position: "absolute",
               zIndex: 10,
             }}

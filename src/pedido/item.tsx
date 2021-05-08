@@ -14,10 +14,10 @@ export default function ItemPedido({
   title,
   image,
   desc,
-  additionalInfo
+  additionalInfo,
 }: ItemPedidoProps) {
   return (
-    <ItemPedidoContainer className="default-container">
+    <ItemPedidoContainer>
       <div className="artist">
         <h2>Artista</h2>
         <AddArtist />

@@ -85,68 +85,69 @@ export const CardArtistaContainer = styled.div`
       border: 1px solid #bebebe;
     }
   }
-
-  .exemplosArte {
-    flex: 626;
-    display: flex;
-    justify-content: space-between;
-    flex: 1 1 auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    position: relative;
-    padding-bottom: 30px;
-    scroll-behavior: smooth;
-
-    .arts {
-      width: fit-content;
-      display: flex;
-      align-items: center;
-      flex-flow: row nowrap;
-      gap: 30px;
-      padding: 0px 30px;
-
-      img {
-        cursor: pointer;
-        max-height: 300px;
-      }
-    }
-
-    .change {
-      position: sticky;
-      z-index: 2;
-      bottom: 0px;
-      top: 0px;
-      cursor: pointer;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0px 15px;
-      background: white;
-
-      font-size: 24px;
-
-      :hover {
-        background: lightgrey;
-      }
-    }
-
-    .right {
-      right: 0px;
-    }
-
-    .left {
-      left: 0px;
-      svg {
-        transform: rotate(180deg);
-      }
-    }
-  }
 `;
 
 interface CheckBoxProps {
   checked: boolean;
 }
+
+export const ExemplosArteContaoner = styled.div`
+  flex: 626;
+  display: flex;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  padding-bottom: 30px;
+  scroll-behavior: smooth;
+  height: 100%;
+
+  .arts {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 30px;
+    padding: 0px 30px;
+
+    img {
+      cursor: pointer;
+      height: 300px;
+      max-height: 100%;
+    }
+  }
+
+  .change {
+    position: sticky;
+    z-index: 2;
+    bottom: 0px;
+    cursor: pointer;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 15px;
+    background: white;
+
+    font-size: 24px;
+
+    :hover {
+      background: lightgrey;
+    }
+  }
+
+  .right {
+    right: 0px;
+  }
+
+  .left {
+    left: 0px;
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+`;
 
 export const CheckBox = styled.div<CheckBoxProps>`
   overflow: hidden;

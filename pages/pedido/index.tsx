@@ -16,7 +16,7 @@ export default function PedidoPage() {
   }, [order.orders]);
 
   return (
-    <div>
+    <div className="default-container">
       {order.orders.map((orderItem) => {
         switch (orderItem) {
           case "art":
@@ -30,3 +30,5 @@ export default function PedidoPage() {
     </div>
   );
 }
+
+PedidoPage.loc = 2;

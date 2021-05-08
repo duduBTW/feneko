@@ -1,26 +1,27 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { GrFormNext } from "react-icons/gr";
+import { ExemplosArteContaoner } from "../styles";
 
 export default function ExemplosArte({
   index,
   setOpen,
 }: {
   index: number;
-  setOpen: any;
+  setOpen?: any;
 }) {
   return (
     <>
-      <div className="exemplosArte" id={`exemplosArte-${index}`}>
+      <ExemplosArteContaoner id={`exemplosArte-${index}`}>
         <Change type="left" index={index} />
         <Arts setOpen={setOpen} />
         <Change type="right" index={index} />
-      </div>
+      </ExemplosArteContaoner>
     </>
   );
 }
 
-function Arts({ setOpen }: { setOpen: any }) {
+export function Arts({ setOpen }: { setOpen?: any }) {
   const images = [
     "https://pbs.twimg.com/media/Ez0LzvAVoAErSp1?format=png&name=900x900",
     "https://pbs.twimg.com/media/EzKF3KdVEAs75TU?format=png&name=900x900",
@@ -31,7 +32,7 @@ function Arts({ setOpen }: { setOpen: any }) {
     <div className="arts" id="arts">
       {images.map((image) => (
         <motion.img
-          onClick={() => setOpen(true)}
+          onClick={() => setOpen && setOpen(true)}
           whileTap={{ scale: 0.9 }}
           src={image}
         />

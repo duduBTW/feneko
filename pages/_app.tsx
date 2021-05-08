@@ -1,10 +1,12 @@
 import { store } from "@/src/redux/store";
 import { AppProps } from "next/app";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import "../styles/globals.css";
-import React from "react";
+import React, { useState } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
+import NavBar from "@/shared/Nav";
+import { setLoc } from "@/src/redux/actions/globalActions";
 
 const theme: DefaultTheme = {
   palette: {
@@ -13,10 +15,24 @@ const theme: DefaultTheme = {
   },
 };
 
-function App({ Component, pageProps }: AppProps) {
+function App({
+  Component,
+  pageProps,
+}: AppProps<{
+  loc: number;
+}>) {
+  const dispatch = useDispatch();
+  const { loc } = Component as any;
+  React.useEffect(() => {
+    const value = (window && loc) || 0;
+
+    dispatch(setLoc(value));
+  }, [loc]);
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
+        <NavBar />
         <Component {...pageProps} />
       </ThemeProvider>
     </Provider>

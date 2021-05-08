@@ -3,9 +3,10 @@ import React from "react";
 export default function NotFound() {
   return (
     <div
+      className="default-container"
       style={{
-        width: "100vw",
-        height: "100vh",
+        // width: "100vw",
+        height: "calc(100vh - 100px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

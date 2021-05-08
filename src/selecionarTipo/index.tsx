@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useRouter } from "next/dist/client/router";
-import { Button, SelecionarTipoContainer } from "pages/selecionarTipo/styles";
+import { Button, SelecionarTipoContainer } from "@/src/selecionarTipo/styles";
 import { Title } from "pages/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,7 +58,7 @@ export default function SelecionarTipo() {
       setTypes(selecionados.map((selecionado) => tipos[selecionado].type))
     );
 
-    history.push("pedido");
+    history.push("/pedido");
   };
 
   return (

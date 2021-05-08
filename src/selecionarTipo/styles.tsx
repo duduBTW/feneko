@@ -17,11 +17,14 @@ export const SelecionarTipoContainer = styled.div`
   @media only screen and (max-width: 600px) {
     padding: 30px 30px;
   }
-  height: calc(85vh - 130px);
+  height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
   .cards {
     margin-top: 30px;
-    min-height: 100%;
+    /* min-height: 100%; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;

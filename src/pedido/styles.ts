@@ -14,6 +14,10 @@ export const ItemPedidoContainer = styled.div`
     flex-direction: column-reverse;
   }
 
+  @media only screen and (max-width: 600px) {
+    /* max-width: calc(100vw - 60px); */
+  }
+
   justify-content: space-between;
 
   .artist {
@@ -26,6 +30,9 @@ export const ItemPedidoContainer = styled.div`
     position: relative;
 
     .line {
+      @media only screen and (max-width: 600px) {
+        position: relative;
+      }
       position: absolute;
       top: 30px;
       @media only screen and (max-width: 1200px) {
@@ -88,15 +95,21 @@ export const ItemPedidoContainer = styled.div`
       min-width: 600px;
     }
 
+    @media only screen and (max-width: 600px) {
+      max-width: calc(100vw - 60px);
+    }
+
     .image {
       position: relative;
       z-index: 2;
-      margin-right: 100px;
+      /* margin-right: 100px; */
+      margin-right: 0px;
 
       @media only screen and (max-width: 1200px) {
         width: 100%;
         height: 600px;
       }
+
       height: 500px;
       width: 500px;
 
@@ -130,6 +143,9 @@ export const ItemPedidoContainer = styled.div`
       top: 30px;
       right: 0px;
       position: absolute;
+      @media only screen and (max-width: 600px) {
+        /* position: relative; */
+      }
       margin: 0px;
       margin-top: 30px;
       padding: 10px 60px;
