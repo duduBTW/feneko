@@ -4,10 +4,12 @@ export type globalType = "art" | "vtuber" | "design";
 
 export interface GlobalModel {
   loc: number;
+  artistModal: number | null;
 }
 
 const defaultState: GlobalModel = {
   loc: 0,
+  artistModal: null,
 };
 
 const globalReducer = (
@@ -19,6 +21,11 @@ const globalReducer = (
       return {
         ...state,
         loc: action.payload,
+      };
+    case "SET_ARTIST_MODAL":
+      return {
+        ...state,
+        artistModal: action.payload,
       };
     default:
       return state;

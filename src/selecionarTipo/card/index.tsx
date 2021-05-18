@@ -22,7 +22,9 @@ const itemVariants: Variants = {
 
 const titleVariants: Variants = {
   rest: (selected) => ({ y: selected ? -80 : 0 }),
-  hover: { y: -280 },
+  hover: {
+    y: -280,
+  },
 };
 
 const descVariants: Variants = {
@@ -32,7 +34,7 @@ const descVariants: Variants = {
     transition: {
       type: "spring",
       delay: 0.15,
-      bounce: 0.5,
+      bounce: 0.4,
     },
   },
 };

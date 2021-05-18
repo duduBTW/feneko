@@ -93,6 +93,7 @@ export const ArtistaContainer = styled.div`
       .icon {
         width: 22px;
         color: ${(props) => props.theme.palette.main};
+        cursor: pointer;
       }
       @media only screen and (max-width: 600px) {
         align-self: center;

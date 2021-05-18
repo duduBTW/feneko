@@ -1,3 +1,4 @@
+import { Arte } from "@/src/data";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { GrFormNext } from "react-icons/gr";
@@ -6,35 +7,35 @@ import { ExemplosArteContaoner } from "../styles";
 export default function ExemplosArte({
   index,
   setOpen,
+  artes,
 }: {
   index: number;
   setOpen?: any;
+  artes: Arte[];
 }) {
   return (
     <>
-      <ExemplosArteContaoner id={`exemplosArte-${index}`}>
+      <ExemplosArteContaoner
+        className="exemplosArte"
+        id={`exemplosArte-${index}`}
+      >
         <Change type="left" index={index} />
-        <Arts setOpen={setOpen} />
+        <Arts arts={artes} setOpen={setOpen} />
         <Change type="right" index={index} />
       </ExemplosArteContaoner>
     </>
   );
 }
 
-export function Arts({ setOpen }: { setOpen?: any }) {
-  const images = [
-    "https://pbs.twimg.com/media/Ez0LzvAVoAErSp1?format=png&name=900x900",
-    "https://pbs.twimg.com/media/EzKF3KdVEAs75TU?format=png&name=900x900",
-    "https://pbs.twimg.com/media/EySHTGJVoAAAV7L?format=jpg&name=large",
-    "https://pbs.twimg.com/media/Ev2fhghVIAM85r8?format=jpg&name=medium",
-  ];
+export function Arts({ setOpen, arts }: { setOpen?: any; arts: Arte[] }) {
   return (
     <div className="arts" id="arts">
-      {images.map((image) => (
+      {arts.map((image, index) => (
         <motion.img
-          onClick={() => setOpen && setOpen(true)}
+          key={index}
+          onClick={setOpen}
           whileTap={{ scale: 0.9 }}
-          src={image}
+          src={image.url}
         />
       ))}
     </div>

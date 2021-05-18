@@ -22,7 +22,7 @@ export default [
   {
     id: 2,
     before: 1,
-    name: "Pedido",
+    name: "Informações do Pedido",
     link: transform`/pedido`,
   },
   {

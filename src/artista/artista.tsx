@@ -3,73 +3,103 @@ import { motion } from "framer-motion";
 import React from "react";
 import ExemplosArte from "../selecionarArtista/item/ExemplosArte";
 import { ArtistaContainer } from "./styles";
+import { Blob } from "react-blob";
 
 import { BiArrowBack } from "react-icons/bi";
+import { ArtistaModelo, Tags } from "../data";
+import { useRouter } from "next/dist/client/router";
 
-export default function Artista() {
+export default function Artista({ artista }: { artista: ArtistaModelo }) {
   const habList = ["Arte", "Teste"];
+
   return (
-    <ArtistaContainer className="default-container">
-      <div className="header">
-        <div className="pfp">
-          <motion.div className="img">
-            <motion.div className="back" />
-          </motion.div>
-        </div>
-        <div className="name">
-          <BiArrowBack size="22px" className="icon" />
-          <h1>Teste artista</h1>
-        </div>
-        <div className="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod delectus
-          optio deleniti molestiae iusto maiores dolorem nisi atque sed ullam.
-        </div>
-        <div className="habilidades">
-          <div className="title">Habilidades</div>
-          <div className="list">
-            {habList.map((item) => (
-              <motion.div
-                animate={{ background: "transparent" }}
-                whileHover={{ background: "rgba(0, 0, 0, 0.1)" }}
-                className="item"
-              >
-                {item}
-              </motion.div>
-            ))}
+    <>
+      <Blob
+        size="60vw"
+        style={{
+          position: "absolute",
+          top: "-30%",
+          left: "-10%",
+          zIndex: -1,
+          backgroundColor: "grey",
+          color: "white",
+          opacity: 0.03,
+          fontSize: "50vh",
+        }}
+      />
+      <ArtistaContainer className="default-container">
+        <HeaderArtista {...artista} />
+        <div className="port">
+          <div className="main">
+            <ImageChanger images={artista.artes} />
+          </div>
+          <div className="all">
+            <ExemplosArte artes={artista.artes} index={1} />
           </div>
         </div>
+      </ArtistaContainer>
+    </>
+  );
+}
+
+interface InfoArtistaProps {
+  name: string;
+  desc: string;
+  profilePic: string;
+  tags: Tags[];
+}
+
+export function HeaderArtista({
+  name,
+  desc,
+  profilePic,
+  tags,
+}: InfoArtistaProps) {
+  const history = useRouter();
+  return (
+    <div className="header">
+      <div className="pfp">
+        <motion.div
+          style={{ backgroundImage: `url('${profilePic}')` }}
+          className="img"
+        >
+          <motion.div className="back" />
+        </motion.div>
       </div>
-      <div className="port">
-        <div className="main">
-          <ImageChanger
-            images={[
-              {
-                type: "image",
-                url:
-                  "https://pbs.twimg.com/media/Ez0LzvAVoAErSp1?format=png&name=900x900",
+      <div className="name">
+        <div onClick={() => history.push("/artista")} className="icon">
+          <motion.div
+            // animate={{ x: 0 }}
+            whileHover={{
+              x: -5,
+              transition: {
+                duration: 0.5,
+                yoyo: Infinity,
+                // repeatType: "loop",
               },
-              {
-                type: "image",
-                url:
-                  "https://pbs.twimg.com/media/EzKF3KdVEAs75TU?format=png&name=900x900",
-              },
-              {
-                type: "image",
-                url:
-                  "https://pbs.twimg.com/media/EySHTGJVoAAAV7L?format=jpg&name=large",
-              },
-              {
-                type: "image",
-                url:
-                  "https://pbs.twimg.com/media/Ev2fhghVIAM85r8?format=jpg&name=medium",
-              },
-            ]}
-          />
+            }}
+          >
+            <BiArrowBack size="22px" />
+          </motion.div>
         </div>
-        <div className="all">
-          <ExemplosArte index={1} />
+
+        <h1>{name}</h1>
+      </div>
+      <div className="desc">{desc}</div>
+      <div className="habilidades">
+        <div className="title">Habilidades</div>
+        <div className="list">
+          {tags.map((item) => (
+            <motion.div
+              animate={{ background: "transparent" }}
+              whileHover={{ background: "rgba(0, 0, 0, 0.1)" }}
+              className="item"
+            >
+              {item}
+            </motion.div>
+          ))}
         </div>
       </div>
-    </ArtistaContainer>
+    </div>
   );
 }

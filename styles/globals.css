@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: "Helvetica Now Display", sans-serif;
   text-rendering: optimizeLegibility;
+  position: relative;
 }
 
 @font-face {
@@ -50,7 +51,7 @@ body {
   padding: 30px 0px 0px 0px;
 }
 
-.default-container .imageModal {
+.imageModal {
   position: fixed;
 
   top: 50%;

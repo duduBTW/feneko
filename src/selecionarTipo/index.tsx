@@ -23,8 +23,7 @@ const tipos: TipoModel[] = [
     type: "art",
   },
   {
-    image:
-      "https://media.discordapp.net/attachments/670725281270726687/838124917924691968/rushia.jpeg",
+    image: "https://pbs.twimg.com/media/E0nea50VgAAB2d_?format=jpg&name=medium",
     label: "vTuber",
     type: "vtuber",
   },
@@ -79,8 +78,11 @@ export default function SelecionarTipo() {
         <AnimatePresence exitBeforeEnter={true}>
           {selecionados.length > 0 ? (
             <Button
-              transition={{
-                delay: 0.3,
+              whileHover={{
+                y: -5,
+              }}
+              whileTap={{
+                y: 5,
               }}
               exit={{ x: 300 }}
               initial={{ x: -300, opacity: 0 }}
@@ -94,7 +96,10 @@ export default function SelecionarTipo() {
               className="selectMore"
               initial={{ x: 200 }}
               animate={{ x: 0 }}
-              exit={{ x: 200, opacity: 0 }}
+              exit={{
+                x: 200,
+                opacity: 0,
+              }}
             >
               Selecione um ou mais items para continuar
             </motion.div>

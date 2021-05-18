@@ -7,6 +7,9 @@ import React, { useState } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import NavBar from "@/shared/Nav";
 import { setLoc } from "@/src/redux/actions/globalActions";
+import { Modal } from "@/shared/Modal";
+import ImageChanger from "@/shared/ImageChanger";
+import ArtistImageChanger from "@/shared/ImageChanger/artist";
 
 const theme: DefaultTheme = {
   palette: {
@@ -34,6 +37,7 @@ function App({
       <ThemeProvider theme={theme}>
         <NavBar />
         <Component {...pageProps} />
+        <ArtistImageChanger />
       </ThemeProvider>
     </Provider>
   );

@@ -1,8 +1,11 @@
 import { motion, Variants } from "framer-motion";
-import { GetStaticProps } from "next";
 import { Title } from "pages/styles";
-import React from "react";
 import { PortfolioContainer } from "./styles";
+
+import React from "react";
+import { Arte } from "../data";
+import { useDispatch } from "react-redux";
+import { setArtistModal } from "../redux/actions/globalActions";
 
 export interface PortItemsModel {
   ratio: string;
@@ -82,11 +85,18 @@ const slashMotion2: Variants = {
   },
 };
 
-export default function Portfolio({
-  portItems,
-}: {
-  portItems: PortItemsModel[];
-}) {
+export interface ArteGaleria extends Arte {
+  nomeArtista: string;
+  idArtista: number;
+}
+
+export default function Portfolio({ portItems }: { portItems: ArteGaleria[] }) {
+  const dispatch = useDispatch();
+
+  const open = (id: number) => {
+    dispatch(setArtistModal(id));
+  };
+
   return (
     <PortfolioContainer>
       <Title className="title">Galeria</Title>
@@ -96,14 +106,15 @@ export default function Portfolio({
         variants={container}
         className="content"
       >
-        {portItems.map(({ ratio, imageLiknk }, index) => (
+        {portItems.map(({ ratio, url, nomeArtista, idArtista }) => (
           <motion.div
-            key={index}
+            key={idArtista}
+            onClick={() => open(idArtista)}
             className="item"
             variants={item}
             style={{
-              gridArea: `span ${ratio.split("/")[1]} / span ${
-                ratio.split("/")[0]
+              gridArea: `span ${ratio ? ratio.split("/")[1] : 1} / span ${
+                ratio ? ratio.split("/")[0] : 1
               }`,
               // gridColumn: `span ${ratio.split("/")[0]}`,
               // gridRow: `span ${ratio.split("/")[1]}`,
@@ -119,12 +130,12 @@ export default function Portfolio({
               variants={slashMotion}
             >
               <motion.div className="artist" variants={slashMotion2}>
-                Nome Artista
+                {nomeArtista}
               </motion.div>
               <motion.div
                 variants={slashMotion4}
                 style={{
-                  backgroundImage: `url('${imageLiknk}')`,
+                  backgroundImage: `url('${url}')`,
                 }}
                 className="itemBack"
               ></motion.div>

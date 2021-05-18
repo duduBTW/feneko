@@ -18,6 +18,24 @@ export const ItemPedidoContainer = styled.div`
     /* max-width: calc(100vw - 60px); */
   }
 
+  textarea {
+    outline: none;
+    width: 100%;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    height: 160px;
+
+    /* margin-top: 50px; */
+    resize: none;
+    border: 1px solid ${(props) => props.theme.palette.second};
+    border-radius: 5px;
+    padding: 30px;
+    font-size: 1.2rem;
+  }
+
   justify-content: space-between;
 
   .artist {
@@ -51,6 +69,8 @@ export const ItemPedidoContainer = styled.div`
     h2 {
       background: white;
       color: ${(props) => props.theme.palette.main};
+      position: sticky;
+      top: 60px;
 
       padding: 0px;
       margin: 50px 0px 23px 0px;
@@ -65,7 +85,7 @@ export const ItemPedidoContainer = styled.div`
     @media only screen and (max-width: 1200px) {
       position: relative;
     }
-    top: 30px;
+    top: 80px;
     height: 100%;
 
     h2 {
@@ -110,8 +130,8 @@ export const ItemPedidoContainer = styled.div`
         height: 600px;
       }
 
-      height: 500px;
-      width: 500px;
+      height: 400px;
+      width: 400px;
 
       .internal {
         &::after {
@@ -148,14 +168,14 @@ export const ItemPedidoContainer = styled.div`
       }
       margin: 0px;
       margin-top: 30px;
-      padding: 10px 60px;
+      padding: 10px 40px;
       background: white;
       border-right: 1px solid ${(props) => props.theme.palette.main};
       color: ${(props) => props.theme.palette.main};
 
       font-style: normal;
       font-weight: 600;
-      font-size: 60px;
+      font-size: 48px;
     }
 
     p {
@@ -168,19 +188,18 @@ export const ItemPedidoContainer = styled.div`
         top: 500px;
       }
       transform: translateX(-30%);
-      max-width: 200px;
-      top: 240px;
+      max-width: 150px;
+      bottom: 0px;
 
       background: white;
       border: 1px solid ${(props) => props.theme.palette.main};
-      box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.25);
-      padding: 25px;
+      padding: 20px;
 
       font-family: "Helvetica Now Display";
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 14px;
+      line-height: 20px;
       color: #131313;
     }
   }
@@ -188,9 +207,9 @@ export const ItemPedidoContainer = styled.div`
 
 export const AddArtistContainer = styled.div`
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme.palette.second};
-
-  height: 160px;
+  border: 1px dashed ${(props) => props.theme.palette.second};
+  transition: all 0.2s ease-in-out;
+  height: 120px;
   width: 100%;
 
   display: flex;
@@ -205,7 +224,55 @@ export const AddArtistContainer = styled.div`
   background: white;
 
   :hover {
-    background: lightgrey;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 0px 16px rgba(252, 151, 9, 0.25);
+    /* background: #fffcf7; */
+  }
+`;
+
+export const ArtistSelectedContainer = styled.div`
+  border: 1px solid ${(props) => props.theme.palette.second};
+  transition: all 0.2s ease-in-out;
+  height: 160px;
+  width: calc(100% - 60px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 30px;
+  margin-bottom: 30px;
+
+  font-size: 22px;
+  font-weight: 500;
+  border-radius: 5px;
+  background: white;
+
+  .info {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+
+    .title {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  .remov {
+    cursor: pointer;
+    color: #c70000;
+    font-size: 0.8rem;
+  }
+
+  .pfp {
+    height: 80px;
+    width: 80px;
+
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50px;
+
+    border: 1px solid #bebebe;
   }
 `;
 

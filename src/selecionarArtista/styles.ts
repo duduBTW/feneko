@@ -24,7 +24,7 @@ export const CardArtistaContainer = styled.div`
       "art art" 1fr
       / 2fr 1fr;
 
-    .infoArtista1 {
+    .infoArtista {
       grid-area: info;
       /* order: 1; */
     }
@@ -52,11 +52,16 @@ export const CardArtistaContainer = styled.div`
   border-radius: 5px;
 
   .infoArtista {
+    cursor: pointer;
     flex: 466;
     min-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    :hover {
+      background: lightgrey;
+    }
 
     .header {
       display: flex;
@@ -167,7 +172,7 @@ export const CheckBox = styled.div<CheckBoxProps>`
     width: 30px;
 
     border: 2px solid ${(props) => props.theme.palette.main};
-    border-radius: 5px;
+    border-radius: 50%;
 
     background: ${(props) =>
       props.checked ? props.theme.palette.main : "white"};

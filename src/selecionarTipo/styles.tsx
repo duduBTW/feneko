@@ -17,7 +17,7 @@ export const SelecionarTipoContainer = styled.div`
   @media only screen and (max-width: 600px) {
     padding: 30px 30px;
   }
-  height: calc(100vh - 160px);
+  min-height: calc(100vh - 160px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -41,6 +41,8 @@ export const SelecionarTipoContainer = styled.div`
 
     @media only screen and (max-width: 900px) {
       grid-template-columns: repeat(1, 1fr);
+      margin-bottom: 60px;
+      margin-top: 30px;
     }
   }
 
@@ -57,20 +59,38 @@ export const SelecionarTipoContainer = styled.div`
 `;
 
 export const Button = styled(motion.button)`
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: "Rubik", sans-serif; */
+  border-radius: 20px;
   border: none;
   outline: none;
-  padding: 0px;
-
+  cursor: pointer;
   background: ${(props) => props.theme.palette.main};
-
+  padding: 15px 40px;
+  width: 300px;
   color: white;
-  font-size: 18px;
-  text-transform: uppercase;
+  font-size: 24px;
+  letter-spacing: 4px;
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+  }
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.15);
+`;
 
-  padding: 15px 70px;
-  border-radius: 5px;
-  font-weight: bold;
-  letter-spacing: 2px;
+export const ButtonOutline = styled(motion.button)`
+  /* font-family: "Rubik", sans-serif; */
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid ${(props) => props.theme.palette.main};
+  color: ${(props) => props.theme.palette.main};
+  background: white;
+  padding: 15px 40px;
+  width: 300px;
+  font-size: 24px;
+  letter-spacing: 4px;
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+  }
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.15);
 `;

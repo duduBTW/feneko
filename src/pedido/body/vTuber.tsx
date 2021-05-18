@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ItemPedido from "./item";
-import { Modal } from "../shared/Modal";
+import ItemPedido from "../item";
+import { Modal } from "../../shared/Modal";
 import { Preco } from "./Preco";
 
 export default function Vtuber() {
@@ -15,8 +15,10 @@ export default function Vtuber() {
         <Preco onClose={onClose} />
       </Modal>{" "}
       <ItemPedido
+        types={["Animador Live 2D", "Modelo"]}
         title="vTuber"
-        desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptate provident, tempora aspernatur exercitationem quisquam. Neque sit eaque dignissimos repellendus."
+        type="vtuber"
+        desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptate provident, tempora aspernatur exercitationem quisquam."
         image="https://pbs.twimg.com/media/E0nea50VgAAB2d_?format=jpg&name=medium"
         additionalInfo={
           <h2 className="price" onClick={() => setOpen(true)}>
