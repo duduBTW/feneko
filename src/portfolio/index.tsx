@@ -1,5 +1,5 @@
 import { motion, Variants } from "framer-motion";
-import { Title } from "pages/styles";
+import { Title } from "@/src/styles";
 import { PortfolioContainer } from "./styles";
 
 import React from "react";

@@ -7,7 +7,7 @@ import { RootModel } from "@/src/redux/reducers";
 import { OrderModel, orderType } from "@/src/redux/reducers/orderReducer";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
-import { Title } from "pages/styles";
+import { Title } from "@/src/styles";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 

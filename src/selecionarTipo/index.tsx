@@ -1,7 +1,7 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useRouter } from "next/dist/client/router";
 import { Button, SelecionarTipoContainer } from "@/src/selecionarTipo/styles";
-import { Title } from "pages/styles";
+import { Title } from "@/src/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTypes } from "../redux/actions/orderActions";

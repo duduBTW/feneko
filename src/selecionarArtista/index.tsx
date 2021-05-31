@@ -2,7 +2,7 @@ import ButtonsBottom from "@/shared/Buttons/Bottom";
 import { AnimatePresence, motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
-import { Title } from "pages/styles";
+import { Title } from "@/src/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
@@ -29,7 +29,8 @@ export default function SelecionarArtista({
 
   const { t } = useTranslation();
 
-  const setOpen = (id: number) => dispatch(setArtistModal(id));
+  // TODO FIX
+  const setOpen = (id: number) => dispatch(setArtistModal([id, 0]));
 
   const send = () => {
     dispatch(

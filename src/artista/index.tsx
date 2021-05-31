@@ -1,4 +1,4 @@
-import { Title } from "pages/styles";
+import { Title } from "@/src/styles";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { dataArtista } from "../data";
