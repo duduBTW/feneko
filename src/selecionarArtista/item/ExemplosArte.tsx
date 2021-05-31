@@ -33,7 +33,7 @@ export function Arts({ setOpen, arts }: { setOpen?: any; arts: Arte[] }) {
       {arts.map((image, index) => (
         <motion.img
           key={index}
-          onClick={setOpen}
+          onClick={() => setOpen(index)}
           whileTap={{ scale: 0.9 }}
           src={image.url}
         />
@@ -46,7 +46,6 @@ function Change({ type, index }: { type: "left" | "right"; index: number }) {
   const scroll = () => {
     var arts = document.getElementById(`exemplosArte-${index}`);
 
-    console.log(`arts`, arts);
     if (arts && type === "left") arts.scrollLeft -= 350;
     if (arts && type === "right") arts.scrollLeft += 350;
   };

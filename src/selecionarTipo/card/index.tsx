@@ -1,4 +1,5 @@
 import { AnimatePresence, motion, Variants } from "framer-motion";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { TipoModel } from "..";
 import { CardTipoContainer } from "./styles";
@@ -45,6 +46,8 @@ export default function CardTipo({
   index,
   selected,
 }: CardTipoProps) {
+  const { lang, t } = useTranslation();
+
   return (
     <CardTipoContainer
       initial="rest"
@@ -56,13 +59,11 @@ export default function CardTipo({
       image={data.image}
     >
       <motion.h2 custom={selected} variants={titleVariants} className="label">
-        {data.label}
+        {lang === "en" ? data.labelEn : data.labelPt}
       </motion.h2>
       <div className="descContainer">
         <motion.p variants={descVariants}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae
-          malesuada massa, id suscipit est. Nullam nibh nulla, maximus at mauris
-          ac, lacinia malesuada risus
+          {lang === "en" ? data.descEn : data.descPt}
         </motion.p>
       </div>
       <AnimatePresence>
@@ -79,7 +80,7 @@ export default function CardTipo({
             }}
             className="selected"
           >
-            Selecionado
+            {t("common:selecionado")}
           </motion.h3>
         )}
       </AnimatePresence>

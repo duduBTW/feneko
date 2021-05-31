@@ -1,10 +1,10 @@
 export type Tags =
-  | "Animador Live 2D"
-  | "Emotes"
-  | "Arte"
-  | "Modelo"
-  | "Overlay"
-  | "Alerta";
+  | "animador"
+  | "emotes"
+  | "arte"
+  | "modelo"
+  | "overlay"
+  | "alerta";
 
 export interface Arte {
   type: "video" | "image";
@@ -19,6 +19,7 @@ export interface ArtistaModelo {
   profilePic: string;
   tags: Tags[];
   artes: Arte[];
+  defSelected?: number;
 }
 
 export interface UserInfo {
@@ -41,7 +42,7 @@ export const dataArtista: ArtistaModelo[] = [
       "https://pbs.twimg.com/media/Ew_pEEyVkAMwvQw?format=jpg&name=medium",
     name: "Miro",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil vero possimus voluptas earum tempore. Assumenda sit sint necessitatibus ipsum suscipit.",
-    tags: ["Animador Live 2D", "Modelo"],
+    tags: ["animador", "modelo"],
     artes: [
       {
         type: "image",
@@ -71,7 +72,7 @@ export const dataArtista: ArtistaModelo[] = [
       "https://th.bing.com/th/id/OIP.z-8dC4vcz6JBGuxWKbwy3AHaF6?pid=ImgDet&rs=1",
     name: "duduBTW",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    tags: ["Animador Live 2D", "Modelo", "Emotes"],
+    tags: ["animador", "modelo", "emotes"],
     artes: [
       {
         type: "image",
@@ -101,7 +102,7 @@ export const dataArtista: ArtistaModelo[] = [
       "https://th.bing.com/th/id/OIP.z-8dC4vcz6JBGuxWKbwy3AHaF6?pid=ImgDet&rs=1",
     name: "Teste",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    tags: ["Arte", "Emotes"],
+    tags: ["arte", "emotes"],
     artes: [
       {
         type: "image",

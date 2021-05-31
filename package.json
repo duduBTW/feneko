@@ -13,6 +13,7 @@
     "framer-motion": "^4.1.11",
     "next": "10.2.0",
     "next-redux-wrapper": "^6.0.2",
+    "next-translate": "^1.0.7",
     "popmotion": "^9.3.5",
     "rc-slider": "^9.7.2",
     "react": "17.0.2",
@@ -20,6 +21,7 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
+    "react-responsive": "^8.2.0",
     "redux": "^4.1.0",
     "uuid": "^8.3.2",
     "yarn": "^1.22.10"
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@types/node": "^15.0.1",
     "@types/react": "^17.0.4",
+    "@types/react-responsive": "^8.0.2",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^5.1.9",
     "styled-components": "^5.2.3",

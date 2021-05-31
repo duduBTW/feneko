@@ -1,6 +1,8 @@
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 
 export default function NotFound() {
+  const { t } = useTranslation();
   return (
     <div
       className="default-container"
@@ -20,7 +22,7 @@ export default function NotFound() {
       <br />
       <br />
       <h1>404</h1>
-      <h2>Página não encontrada</h2>
+      <h2>{t("common:404")}</h2>
     </div>
   );
 }

@@ -6,4 +6,7 @@ export const Title = styled.h1`
   color: #015150;
   padding: 0px;
   margin: 0px;
+
+  display: flex;
+  justify-content: flex-end;
 `;

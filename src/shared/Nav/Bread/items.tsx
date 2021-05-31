@@ -31,4 +31,10 @@ export default [
     name: "Selecionar Artista",
     link: transform`/selecionarArtista`,
   },
+  {
+    id: 4,
+    before: 2,
+    name: "Finalizar",
+    link: transform`/finalizar`,
+  },
 ];

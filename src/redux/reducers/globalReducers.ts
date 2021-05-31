@@ -4,7 +4,7 @@ export type globalType = "art" | "vtuber" | "design";
 
 export interface GlobalModel {
   loc: number;
-  artistModal: number | null;
+  artistModal: number[] | null;
 }
 
 const defaultState: GlobalModel = {

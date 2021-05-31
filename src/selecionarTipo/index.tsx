@@ -8,10 +8,14 @@ import { setTypes } from "../redux/actions/orderActions";
 import { RootModel } from "../redux/reducers";
 import { OrderModel, orderType } from "../redux/reducers/orderReducer";
 import CardTipo from "./card";
+import useTranslation from "next-translate/useTranslation";
 
 export interface TipoModel {
   type: orderType;
-  label: string;
+  labelPt: string;
+  labelEn?: string;
+  descPt?: string;
+  descEn?: string;
   image: string;
 }
 
@@ -19,18 +23,34 @@ const tipos: TipoModel[] = [
   {
     image:
       "https://media.discordapp.net/attachments/670725281270726687/838124910387265546/cute.png",
-    label: "Arte",
+
+    labelPt: "Arte",
+    descPt:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores optio adipisci sequi ipsam vero eum harum, perferendis distinctio maxime?",
+    descEn:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores optio adipisci sequi ipsam vero eum harum, perferendis distinctio maxime?",
+    labelEn: "Art",
     type: "art",
   },
   {
     image: "https://pbs.twimg.com/media/E0nea50VgAAB2d_?format=jpg&name=medium",
-    label: "vTuber",
+    labelPt: "vTuber",
+    labelEn: "vTuber",
+    descPt:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores optio adipisci sequi ipsam vero eum harum, perferendis distinctio maxime?",
+    descEn:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores optio adipisci sequi ipsam vero eum harum, perferendis distinctio maxime?",
     type: "vtuber",
   },
   {
     image:
       "https://media.discordapp.net/attachments/670725281270726687/838124875109367849/reimu.png?width=416&height=701",
-    label: "Design",
+    labelPt: "Design",
+    labelEn: "Design",
+    descPt:
+      "Portugues: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores optio adipisci sequi ipsam vero eum harum, perferendis distinctio maxime?",
+    descEn:
+      "Ingles: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe maiores optio adipisci sequi ipsam vero eum harum, perferendis distinctio maxime?",
     type: "design",
   },
 ];
@@ -43,6 +63,8 @@ export default function SelecionarTipo() {
 
   const dispatch = useDispatch();
   const history = useRouter();
+
+  const { t } = useTranslation();
 
   const addSelecionado = (data: number) => {
     if (!!selecionados.includes(data)) {
@@ -62,7 +84,7 @@ export default function SelecionarTipo() {
 
   return (
     <SelecionarTipoContainer>
-      <Title>Selecione o tipo</Title>
+      <Title>{t("common:tituloSelecionarTipo")}</Title>
       <div className="cards">
         {tipos.map((tipo, index) => (
           <CardTipo
@@ -89,7 +111,7 @@ export default function SelecionarTipo() {
               animate={{ x: 0, opacity: 1 }}
               onClick={continueOrder}
             >
-              Continuar
+              {t("common:continuar")}
             </Button>
           ) : (
             <motion.div
@@ -101,7 +123,7 @@ export default function SelecionarTipo() {
                 opacity: 0,
               }}
             >
-              Selecione um ou mais items para continuar
+              {t("common:umOuMias")}
             </motion.div>
           )}
         </AnimatePresence>

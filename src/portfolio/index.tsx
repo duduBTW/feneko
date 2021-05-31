@@ -3,9 +3,10 @@ import { Title } from "pages/styles";
 import { PortfolioContainer } from "./styles";
 
 import React from "react";
-import { Arte } from "../data";
+import { Arte, dataArtista } from "../data";
 import { useDispatch } from "react-redux";
 import { setArtistModal } from "../redux/actions/globalActions";
+import useTranslation from "next-translate/useTranslation";
 
 export interface PortItemsModel {
   ratio: string;
@@ -92,24 +93,46 @@ export interface ArteGaleria extends Arte {
 
 export default function Portfolio({ portItems }: { portItems: ArteGaleria[] }) {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-  const open = (id: number) => {
-    dispatch(setArtistModal(id));
+  const open = (id: number, index: number) => {
+    console.log(`index`, index);
+    dispatch(setArtistModal([id, index]));
   };
 
   return (
     <PortfolioContainer>
-      <Title className="title">Galeria</Title>
+      <div className="header">
+        <select>
+          <option value="uwu">uwu</option>
+          <option value="owo">uwu</option>
+        </select>
+        <Title className="title">{t("common:tituloGaleria")}</Title>
+      </div>
       <motion.div
         initial="hidden"
         animate="visible"
         variants={container}
         className="content"
       >
-        {portItems.map(({ ratio, url, nomeArtista, idArtista }) => (
+        {portItems.map(({ ratio, url, nomeArtista, idArtista }, index) => (
           <motion.div
             key={idArtista}
-            onClick={() => open(idArtista)}
+            onClick={() =>
+              open(
+                idArtista,
+                dataArtista
+                  .map((item) =>
+                    item.id === idArtista
+                      ? item.artes.map((arte, index) =>
+                          arte.url === url ? index : null
+                        )
+                      : null
+                  )
+                  .find((item) => item !== null)
+                  ?.find((item) => item !== null) ?? 0
+              )
+            }
             className="item"
             variants={item}
             style={{

@@ -1,0 +1,37 @@
+{
+  "navPedido": "Order",
+  "navPortfolio": "Gallery",
+  "navArtistas": "Artists",
+ 
+  "selecionado": "Selected",
+  "umOuMias": "Select one or more items to continue",
+
+   "tituloGaleria": "Gallery",
+   "tituloSelecionarTipo": "Select the type",
+   "mudarTipo": "Change Type",
+   "adicionar": "Add",
+   "adicionarDescricao": "Click here to add {{type}}, you can add how many artists you want",
+   "tituloArtistas": "Artist", 
+   "tituloFormulario": "Form",
+   "tituloInfoPedidos": "Order Informations",
+   "tipo": "Type",
+   "descricao": "Description",
+   "placeholder": "ex: I want a {{title}} with...",
+ 
+   "continuar": "Continue",
+   "selecionar": "Select",
+   "cancelar": "Cancel",
+   "voltar": "Back",
+   "finalizar": "Finish",
+   "nome": "Name", 
+   "naoInformada": "Not informed", 
+ 
+   "animador": "Live 2D Animator",
+   "modelo": "Model",
+   "emotes": "Emotes",
+   "alerta": "Alert",
+   "overlay": "Overlay",
+   "arte": "Arte",
+
+   "404": "Page not found"
+ }

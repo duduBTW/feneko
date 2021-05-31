@@ -10,11 +10,17 @@ const swipePower = (offset: number, velocity: number) => {
 const swipeConfidenceThreshold = 10000;
 export default function ImageChanger({
   images,
+  def,
 }: {
   images: { type: "image" | "video"; url: any }[];
+  def: number;
 }) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, images.length, page);
+
+  useEffect(() => {
+    setPage([def, def > page ? 1000 : -1000]);
+  }, [def]);
 
   const variants = {
     enter: (direction: number) => {
@@ -38,6 +44,7 @@ export default function ImageChanger({
   };
 
   const paginate = (newDirection: number) => {
+    console.log(`page`, page);
     setPage([page + newDirection, newDirection]);
   };
 

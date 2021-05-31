@@ -1,0 +1,38 @@
+{
+ "navPedido": "Fazer Pedido",
+ "navPortfolio": "Galeria",
+ "navArtistas": "Artistas",
+
+  "selecionado": "Selecionado",
+  "umOuMias": "Selecione um ou mais itens para continuar",
+  "tituloGaleria": "Galeria",
+  "tituloSelecionarTipo": "Selecione o tipo",
+  "mudarTipo": "Mudar Tipo",
+  "adicionar": "Adicionar",
+  "adicionarDescricao": "Clique aqui para adicionar {{type}}, você pode adicionar quantos artias você quiser",
+  "tituloArtistas": "Artistas", 
+  "tituloFormulario": "Formulario",
+  "tituloInfoPedidos": "Informações do pedido",
+  "tipo": "Tipo",
+  "descricao": "Descrição",
+  "placeholder": "ex: Eu quero um/a {{title}} com...",
+  "descricaoPlaceholder": "ex: Eu quero um/uma",
+
+
+  "continuar": "Continuar",
+  "selecionar": "Selecionar",
+  "cancelar": "Cancelar",
+  "voltar": "Voltar",
+  "finalizar": "Finalizar",
+  "nome": "Nome", 
+  "naoInformada": "Não informada", 
+
+  "animador": "Animador Live 2D",
+  "modelo": "Modelo",
+  "emotes": "Emotes",
+  "alerta": "Alerta",
+  "overlay": "Overlay",
+  "arte": "Arte",
+
+  "404": "Página não encontrada"
+}

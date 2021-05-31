@@ -4,6 +4,7 @@ import React from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { Variants } from "framer-motion";
 import { HeaderPedidoContainer } from "./styles";
+import useTranslation from "next-translate/useTranslation";
 
 export const backAnim: Variants = {
   hover: {
@@ -18,6 +19,8 @@ export const backAnim: Variants = {
 
 export default function HeaderPedido() {
   const history = useRouter();
+  const { t } = useTranslation();
+
   return (
     <HeaderPedidoContainer
       onClick={() => history.push("/selecionarTipo")}
@@ -31,7 +34,7 @@ export default function HeaderPedido() {
         >
           <BiArrowBack size="22px" color="#015150" />
         </motion.div>
-        <div>Mudar tipos </div>
+        <div>{t("common:mudarTipo")}</div>
       </div>
     </HeaderPedidoContainer>
   );

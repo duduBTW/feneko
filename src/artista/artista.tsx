@@ -1,6 +1,6 @@
 import ImageChanger from "@/shared/ImageChanger";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ExemplosArte from "../selecionarArtista/item/ExemplosArte";
 import { ArtistaContainer } from "./styles";
 import { Blob } from "react-blob";
@@ -10,7 +10,7 @@ import { ArtistaModelo, Tags } from "../data";
 import { useRouter } from "next/dist/client/router";
 
 export default function Artista({ artista }: { artista: ArtistaModelo }) {
-  const habList = ["Arte", "Teste"];
+  const [selected, setSelected] = useState(0);
 
   return (
     <>
@@ -31,10 +31,14 @@ export default function Artista({ artista }: { artista: ArtistaModelo }) {
         <HeaderArtista {...artista} />
         <div className="port">
           <div className="main">
-            <ImageChanger images={artista.artes} />
+            <ImageChanger def={selected} images={artista.artes} />
           </div>
           <div className="all">
-            <ExemplosArte artes={artista.artes} index={1} />
+            <ExemplosArte
+              setOpen={(i: number) => setSelected(i)}
+              artes={artista.artes}
+              index={1}
+            />
           </div>
         </div>
       </ArtistaContainer>

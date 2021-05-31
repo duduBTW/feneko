@@ -11,6 +11,8 @@ export const BreadItem = styled.div<BreadItemProps>`
   gap: 15px;
   font-size: ${(props) => (props.active ? "1rem" : "0.8rem")};
   color: ${(props) => (props.active ? "black" : "grey")};
+
+  min-width: 150px;
   .icon {
     color: ${(props) => props.theme.palette.main};
   }
@@ -18,6 +20,6 @@ export const BreadItem = styled.div<BreadItemProps>`
 export const BreadContainer = styled.div`
   display: flex;
   gap: 15px;
-  /* max-width: 30vw; */
+  max-width: 30vw;
   overflow-x: auto;
 `;

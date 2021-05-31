@@ -71,6 +71,7 @@ export const ItemPedidoContainer = styled.div`
       color: ${(props) => props.theme.palette.main};
       position: sticky;
       top: 60px;
+      z-index: 3;
 
       padding: 0px;
       margin: 50px 0px 23px 0px;
@@ -102,6 +103,12 @@ export const ItemPedidoContainer = styled.div`
       letter-spacing: 3px;
 
       color: ${(props) => props.theme.palette.second};
+
+      width: 100%;
+      cursor: pointer;
+      :hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
     }
   }
 
@@ -185,7 +192,9 @@ export const ItemPedidoContainer = styled.div`
 
       @media only screen and (max-width: 1200px) {
         transform: translateX(30%);
-        top: 500px;
+        /* top: 500px; */
+        max-width: 350px;
+        bottom: 70px;
       }
       transform: translateX(-30%);
       max-width: 150px;
@@ -203,9 +212,27 @@ export const ItemPedidoContainer = styled.div`
       color: #131313;
     }
   }
+
+  .mobile-header {
+    img {
+      max-width: 100%;
+    }
+
+    p {
+      padding: 30px;
+      background: white;
+    }
+
+    h1 {
+      color: ${(props) => props.theme.palette.main};
+      font-size: 42px;
+      font-weight: 600;
+      background: white;
+    }
+  }
 `;
 
-export const AddArtistContainer = styled.div`
+export const AddArtistContainer = styled(motion.div)`
   cursor: pointer;
   border: 1px dashed ${(props) => props.theme.palette.second};
   transition: all 0.2s ease-in-out;
@@ -222,11 +249,24 @@ export const AddArtistContainer = styled.div`
 
   border-radius: 5px;
   background: white;
+  position: relative;
+  overflow: hidden;
+
+  gap: 30px;
 
   :hover {
     transition: all 0.2s ease-in-out;
     box-shadow: 0px 0px 16px rgba(252, 151, 9, 0.25);
     /* background: #fffcf7; */
+  }
+
+  p {
+    position: absolute;
+    font-size: 0.8rem;
+    color: grey;
+    max-width: 40%;
+
+    right: 150px;
   }
 `;
 
@@ -345,6 +385,9 @@ export const ModalPrecoContainer = styled(motion.div)`
     .price {
       color: ${(props) => props.theme.palette.second};
       font-size: 0.8rem;
+      :hover {
+        background: rgba(0, 0, 0, 0.3);
+      }
     }
   }
 `;

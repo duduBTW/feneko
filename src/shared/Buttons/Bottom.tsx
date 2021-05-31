@@ -1,5 +1,5 @@
 import { Button, ButtonOutline } from "@/src/selecionarTipo/styles";
-import { useRouter } from "next/dist/client/router";
+import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { ButtonBottomContaienr } from "./styles";
 
@@ -7,12 +7,14 @@ export default function ButtonsBottom({
   onSubmit,
   onCancel,
   nextLabel,
+  backLabel,
 }: {
   onSubmit: () => void;
   onCancel: () => void;
   nextLabel?: string;
+  backLabel?: string;
 }) {
-  const history = useRouter();
+  const { t } = useTranslation();
 
   return (
     <ButtonBottomContaienr>
@@ -28,7 +30,7 @@ export default function ButtonsBottom({
         animate={{ x: 0, opacity: 1 }}
         onClick={onCancel}
       >
-        Cancelar
+        {backLabel || t("common:cancelar")}
       </ButtonOutline>
       <Button
         onClick={onSubmit}
@@ -42,7 +44,7 @@ export default function ButtonsBottom({
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
       >
-        {nextLabel || "Selecionar"}
+        {nextLabel || t("common:selecionar")}
       </Button>
     </ButtonBottomContaienr>
   );

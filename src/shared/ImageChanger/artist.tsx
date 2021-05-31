@@ -6,6 +6,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ImageChanger from ".";
 import { Modal } from "../Modal";
+import { AiOutlineClose } from "react-icons/ai";
+import { ModalArtistContainer } from "./styles";
+import { useRouter } from "next/dist/client/router";
 
 export default function ArtistImageChanger() {
   const { artistModal } = useSelector<RootModel, GlobalModel>(
@@ -15,9 +18,14 @@ export default function ArtistImageChanger() {
   const [artistaSelecionado, setArtistaSelecionado] =
     useState<ArtistaModelo | null>();
 
+  const history = useRouter();
   useEffect(() => {
+    console.log(
+      `dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null`,
+      dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null
+    );
     setArtistaSelecionado(
-      dataArtista.find((artist) => artist.id === artistModal) || null
+      dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null
     );
   }, [artistModal]);
 
@@ -37,13 +45,30 @@ export default function ArtistImageChanger() {
 
   return (
     <Modal open={Boolean(artistaSelecionado)}>
-      <div className="imageModal">
+      <ModalArtistContainer>
+        <div className="header">
+          <h1
+            onClick={() => {
+              dispatch(setArtistModal(null));
+              history.push(`/artista/${artistaSelecionado?.id}`);
+            }}
+          >
+            {artistaSelecionado?.name}
+          </h1>
+        </div>
+        <AiOutlineClose
+          onClick={() => dispatch(setArtistModal(null))}
+          className="closeI"
+        />
         {artistaSelecionado ? (
-          <ImageChanger images={artistaSelecionado.artes} />
+          <ImageChanger
+            def={artistModal?.[1] ?? 0}
+            images={artistaSelecionado.artes}
+          />
         ) : (
           <div></div>
         )}
-      </div>
+      </ModalArtistContainer>
     </Modal>
   );
 }

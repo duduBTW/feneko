@@ -6,7 +6,7 @@ export default function Design() {
     <div>
       {" "}
       <ItemPedido
-        types={["Emotes", "Overlay", "Alerta"]}
+        types={["emotes", "overlay", "alerta"]}
         title="Design"
         type="design"
         desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio voluptate provident, tempora aspernatur exercitationem quisquam. Neque sit eaque dignissimos repellendus."

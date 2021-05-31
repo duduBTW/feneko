@@ -68,12 +68,12 @@ export const Button = styled(motion.button)`
   padding: 15px 40px;
   width: 300px;
   color: white;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: 4px;
   @media only screen and (max-width: 900px) {
     width: 100%;
   }
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const ButtonOutline = styled(motion.button)`
@@ -87,10 +87,10 @@ export const ButtonOutline = styled(motion.button)`
   background: white;
   padding: 15px 40px;
   width: 300px;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: 4px;
   @media only screen and (max-width: 900px) {
     width: 100%;
   }
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
 `;

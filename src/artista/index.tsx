@@ -9,8 +9,8 @@ export default function Artistas() {
   const checked = useState<number[]>([]);
   const dispatch = useDispatch();
 
-  const open = (id: number) => {
-    dispatch(setArtistModal(id));
+  const open = (id: number, index: number) => {
+    dispatch(setArtistModal([id, index]));
   };
 
   return (
@@ -21,7 +21,7 @@ export default function Artistas() {
           checked={checked}
           select={false}
           artista={artItem}
-          setOpen={() => open(artItem.id)}
+          setOpen={(i: number) => open(artItem.id, i)}
           index={index}
           key={index}
         />

@@ -5,6 +5,23 @@ export const PortfolioContainer = styled(motion.div)`
   max-width: 1366px;
   margin: 0px auto;
 
+  .header {
+    padding: 30px 0px;
+    display: flex;
+    select {
+      flex: 1;
+      margin: 10px 0px;
+      padding: 10px;
+      border: none;
+      border-bottom: 1px solid black;
+      outline: none;
+    }
+
+    .title {
+      flex: 1;
+    }
+  }
+
   .title {
     padding: 30px 0px 0px 0px;
 
