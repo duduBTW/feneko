@@ -4,7 +4,8 @@ export type Tags =
   | "arte"
   | "modelo"
   | "overlay"
-  | "alerta";
+  | "alerta"
+  | "sites";
 
 export interface Arte {
   type: "video" | "image";

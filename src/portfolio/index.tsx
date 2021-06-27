@@ -1,12 +1,23 @@
+import dynamic from "next/dynamic";
+
 import { motion, Variants } from "framer-motion";
 import { Title } from "@/src/styles";
 import { PortfolioContainer } from "./styles";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Arte, dataArtista } from "../data";
 import { useDispatch } from "react-redux";
 import { setArtistModal } from "../redux/actions/globalActions";
 import useTranslation from "next-translate/useTranslation";
+import axios from "axios";
+import { IFenekoArte } from "../models/art";
+
+const MenuItem = dynamic(() => import("@material-ui/core/MenuItem"), {
+  ssr: false,
+});
+const Select = dynamic(() => import("@material-ui/core/Select"), {
+  ssr: false,
+});
 
 export interface PortItemsModel {
   ratio: string;
@@ -91,22 +102,35 @@ export interface ArteGaleria extends Arte {
   idArtista: number;
 }
 
-export default function Portfolio({ portItems }: { portItems: ArteGaleria[] }) {
+export default function Portfolio() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [portItems, setportItems] = useState<null | IFenekoArte[]>();
 
   const open = (id: number, index: number) => {
     console.log(`index`, index);
     dispatch(setArtistModal([id, index]));
   };
 
+  useEffect(() => {
+    axios.get("/api/portfolio").then(({ data }) => setportItems(data));
+  }, []);
+
   return (
     <PortfolioContainer>
       <div className="header">
-        <select>
-          <option value="uwu">uwu</option>
-          <option value="owo">uwu</option>
-        </select>
+        {/* <div style={{ maxHeight: 70, width: "300px" }}>
+          <Select
+            fullWidth
+            variant="outlined"
+            // value={10}
+            // onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </div> */}
         <Title className="title">{t("common:tituloGaleria")}</Title>
       </div>
       <motion.div
@@ -115,65 +139,71 @@ export default function Portfolio({ portItems }: { portItems: ArteGaleria[] }) {
         variants={container}
         className="content"
       >
-        {portItems.map(({ ratio, url, nomeArtista, idArtista }, index) => (
-          <motion.div
-            key={idArtista}
-            onClick={() =>
-              open(
-                idArtista,
-                dataArtista
-                  .map((item) =>
-                    item.id === idArtista
-                      ? item.artes.map((arte, index) =>
-                          arte.url === url ? index : null
-                        )
-                      : null
+        {portItems &&
+          portItems.map(
+            (
+              { url, artist: nomeArtista, _id: idArtista, largura, altura },
+              index
+            ) => (
+              <motion.div
+                key={idArtista}
+                onClick={() =>
+                  open(
+                    idArtista,
+                    dataArtista
+                      .map((item) =>
+                        item.id === idArtista
+                          ? item.artes.map((arte, index) =>
+                              arte.url === url ? index : null
+                            )
+                          : null
+                      )
+                      .find((item) => item !== null)
+                      ?.find((item) => item !== null) ?? 0
                   )
-                  .find((item) => item !== null)
-                  ?.find((item) => item !== null) ?? 0
-              )
-            }
-            className="item"
-            variants={item}
-            style={{
-              gridArea: `span ${ratio ? ratio.split("/")[1] : 1} / span ${
-                ratio ? ratio.split("/")[0] : 1
-              }`,
-              // gridColumn: `span ${ratio.split("/")[0]}`,
-              // gridRow: `span ${ratio.split("/")[1]}`,
-              position: "relative",
-            }}
-          >
-            <motion.div
-              className="itemBack"
-              initial="rest"
-              whileHover="hover"
-              whileTap="tap"
-              animate="rest"
-              variants={slashMotion}
-            >
-              <motion.div className="artist" variants={slashMotion2}>
-                {nomeArtista}
+                }
+                className="item"
+                variants={item}
+                style={{
+                  gridArea: `span ${altura} / span ${largura}`,
+                  // gridColumn: `span ${ratio.split("/")[0]}`,
+                  // gridRow: `span ${ratio.split("/")[1]}`,
+                  minHeight: 350 * Number(altura),
+                  maxHeight: 400 * Number(altura),
+                  position: "relative",
+                }}
+              >
+                <motion.div
+                  className="itemBack"
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
+                  animate="rest"
+                  variants={slashMotion}
+                >
+                  <motion.div className="artist" variants={slashMotion2}>
+                    {nomeArtista}
+                  </motion.div>
+                  <motion.div
+                    variants={slashMotion4}
+                    style={{
+                      backgroundImage: `url('${url}')`,
+                    }}
+                    className="itemBack"
+                  ></motion.div>
+                  <motion.div
+                    variants={slashMotion3}
+                    style={{
+                      background: "rgba(1, 81, 80, 0.75)",
+                      clipPath: "polygon(77% 0, 100% 100%, 0 100%, 0 0)",
+                      scale: 1.8,
+                    }}
+                    className="itemBack"
+                  ></motion.div>
+                </motion.div>
               </motion.div>
-              <motion.div
-                variants={slashMotion4}
-                style={{
-                  backgroundImage: `url('${url}')`,
-                }}
-                className="itemBack"
-              ></motion.div>
-              <motion.div
-                variants={slashMotion3}
-                style={{
-                  background: "rgba(1, 81, 80, 0.75)",
-                  clipPath: "polygon(77% 0, 100% 100%, 0 100%, 0 0)",
-                  scale: 1.8,
-                }}
-                className="itemBack"
-              ></motion.div>
-            </motion.div>
-          </motion.div>
-        ))}
+            )
+          )}
       </motion.div>
     </PortfolioContainer>
   );

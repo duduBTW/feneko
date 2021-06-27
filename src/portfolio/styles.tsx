@@ -8,14 +8,6 @@ export const PortfolioContainer = styled(motion.div)`
   .header {
     padding: 30px 0px;
     display: flex;
-    select {
-      flex: 1;
-      margin: 10px 0px;
-      padding: 10px;
-      border: none;
-      border-bottom: 1px solid black;
-      outline: none;
-    }
 
     .title {
       flex: 1;
@@ -39,8 +31,8 @@ export const PortfolioContainer = styled(motion.div)`
 
     padding: 30px 0px;
 
-    grid-template-columns: repeat(4, minmax(auto, 28.5rem));
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(3, 30%);
+    /* grid-auto-rows: 1fr; */
     grid-auto-flow: dense;
     gap: 60px;
 
@@ -49,13 +41,13 @@ export const PortfolioContainer = styled(motion.div)`
     }
 
     @media only screen and (max-width: 1024px) {
-      grid-template-columns: repeat(3, minmax(auto, 28.5rem));
+      grid-template-columns: repeat(3, 50%);
       gap: 30px;
       padding: 30px 50px;
     }
 
     @media only screen and (max-width: 600px) {
-      grid-template-columns: repeat(2, minmax(auto, 28.5rem));
+      grid-template-columns: repeat(2, 50%);
       padding: 30px 30px;
       gap: 15px;
     }
@@ -111,8 +103,7 @@ export const PortfolioContainer = styled(motion.div)`
 
       &::before {
         content: "";
-        /* height: 100px; */
-        padding-top: 45%; // This is rl cool
+        padding-top: 100%; // This is rl cool
         display: block;
       }
     }

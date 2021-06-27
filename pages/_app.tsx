@@ -1,15 +1,13 @@
-import { store } from "@/src/redux/store";
-import { AppProps } from "next/app";
-import { Provider, useDispatch } from "react-redux";
-import withRedux from "next-redux-wrapper";
-import "../styles/globals.css";
-import React, { useState } from "react";
-import { DefaultTheme, ThemeProvider } from "styled-components";
+import ArtistImageChanger from "@/shared/ImageChanger/artist";
 import NavBar from "@/shared/Nav";
 import { setLoc } from "@/src/redux/actions/globalActions";
-import { Modal } from "@/shared/Modal";
-import ImageChanger from "@/shared/ImageChanger";
-import ArtistImageChanger from "@/shared/ImageChanger/artist";
+import { store } from "@/src/redux/store";
+import withRedux from "next-redux-wrapper";
+import { AppProps } from "next/app";
+import React from "react";
+import { Provider, useDispatch } from "react-redux";
+import { DefaultTheme, ThemeProvider } from "styled-components";
+import "../styles/globals.css";
 
 const theme: DefaultTheme = {
   palette: {

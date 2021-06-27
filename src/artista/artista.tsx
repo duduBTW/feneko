@@ -9,8 +9,9 @@ import { BiArrowBack } from "react-icons/bi";
 import { ArtistaModelo, Tags } from "../data";
 import { useRouter } from "next/dist/client/router";
 
-export default function Artista({ artista }: { artista: ArtistaModelo }) {
+export default function Artista({ artista }: { artista: any }) {
   const [selected, setSelected] = useState(0);
+  console.log(`artista?.art`, artista?.art);
 
   return (
     <>
@@ -28,15 +29,15 @@ export default function Artista({ artista }: { artista: ArtistaModelo }) {
         }}
       />
       <ArtistaContainer className="default-container">
-        <HeaderArtista {...artista} />
+        <HeaderArtista {...artista.artist} />
         <div className="port">
           <div className="main">
-            <ImageChanger def={selected} images={artista.artes} />
+            <ImageChanger def={selected} images={artista?.art} />
           </div>
           <div className="all">
             <ExemplosArte
               setOpen={(i: number) => setSelected(i)}
-              artes={artista.artes}
+              artes={artista?.art}
               index={1}
             />
           </div>
@@ -93,7 +94,7 @@ export function HeaderArtista({
       <div className="habilidades">
         <div className="title">Habilidades</div>
         <div className="list">
-          {tags.map((item) => (
+          {tags?.map((item) => (
             <motion.div
               animate={{ background: "transparent" }}
               whileHover={{ background: "rgba(0, 0, 0, 0.1)" }}

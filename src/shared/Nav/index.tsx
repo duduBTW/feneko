@@ -12,7 +12,7 @@ import setLanguage from "next-translate/setLanguage";
 export default function NavBar() {
   const history = useRouter();
   const [open, setopen] = useState(false);
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const lisks = [
     {
       link: "/selecionarTipo",
@@ -81,6 +81,7 @@ export default function NavBar() {
                 </div>
               ))}
               <select
+                value={lang}
                 onChange={async (e) => await setLanguage(e.target.value)}
                 style={{ border: "none" }}
               >

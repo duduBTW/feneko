@@ -82,7 +82,7 @@ export default function ItemPedido({
         />
         <div className="line"> </div>
       </div>
-      {isMobile ? (
+      {!isMobile ? (
         <div className="mobile-header">
           <h1>{title}</h1>
           <img src={image} />

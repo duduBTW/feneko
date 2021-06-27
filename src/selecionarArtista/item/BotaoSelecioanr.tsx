@@ -4,26 +4,15 @@ import { CheckBox } from "../styles";
 
 export default function BotaoSelecionar({
   checked,
-  id,
-}: {
-  checked: [number[], React.Dispatch<React.SetStateAction<number[]>>];
-  id: number;
+}: // changeCheched,
+{
+  checked: boolean;
+  // changeCheched: () => {};
 }) {
-  const [selecionado, setChecked] = checked;
-
-  const changeCheched = () => {
-    if (Boolean(selecionado.find((selec) => selec === id))) {
-      const newValue = selecionado.filter((selec) => selec !== id);
-      setChecked(newValue);
-      return;
-    }
-    setChecked((c) => [...c, id]);
-  };
-
   return (
     <CheckBox
-      checked={Boolean(selecionado.find((selec) => selec === id))}
-      onClick={changeCheched}
+      checked={checked}
+      // onClick={changeCheched}
       className="botaoSelecionar"
     >
       <div className="check"></div>

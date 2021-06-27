@@ -1,3 +1,4 @@
+import { IFenekoTipoPedido } from "@/src/models/itemPedido";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
@@ -5,7 +6,7 @@ import { TipoModel } from "..";
 import { CardTipoContainer } from "./styles";
 
 interface CardTipoProps {
-  data: TipoModel;
+  data: IFenekoTipoPedido;
   onClick: (data: number) => void;
   index: number;
   selected: boolean;
@@ -13,7 +14,7 @@ interface CardTipoProps {
 
 const itemVariants: Variants = {
   hover: {
-    scale: 1.1,
+    scale: 1.05,
     transition: {
       type: "tween",
       ease: "backOut",
@@ -55,11 +56,11 @@ export default function CardTipo({
       whileHover="hover"
       variants={itemVariants}
       selected={selected}
-      onClick={() => onClick(index)}
+      onClick={() => onClick(data._id)}
       image={data.image}
     >
       <motion.h2 custom={selected} variants={titleVariants} className="label">
-        {lang === "en" ? data.labelEn : data.labelPt}
+        {lang === "en" ? data.titleEn : data.titlePt}
       </motion.h2>
       <div className="descContainer">
         <motion.p variants={descVariants}>

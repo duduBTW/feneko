@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const SelecionarArtistaContainer = styled.div`
@@ -8,12 +9,17 @@ export const SelecionarArtistaContainer = styled.div`
     margin: 0px;
   }
 `;
-export const CardArtistaContainer = styled.div`
+export const CardArtistaContainer = styled(motion.div)`
   padding: 30px;
   border: 1px solid #bebebe;
   margin: 50px 0px;
 
   display: flex;
+  cursor: pointer;
+
+  :hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
 
   @media only screen and (max-width: 1024px) {
     /* flex-direction: column; */
@@ -49,7 +55,7 @@ export const CardArtistaContainer = styled.div`
   }
   gap: 30px;
 
-  border-radius: 5px;
+  border-radius: 30px;
 
   .infoArtista {
     cursor: pointer;
@@ -58,10 +64,6 @@ export const CardArtistaContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    :hover {
-      background: lightgrey;
-    }
 
     .header {
       display: flex;
@@ -98,6 +100,7 @@ interface CheckBoxProps {
 
 export const ExemplosArteContaoner = styled.div`
   flex: 626;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex: 1 1 auto;
@@ -107,6 +110,28 @@ export const ExemplosArteContaoner = styled.div`
   padding-bottom: 30px;
   scroll-behavior: smooth;
   height: 100%;
+
+  /* width */
+  ::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #e6ffec;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c9c9c9;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
   .arts {
     width: fit-content;
@@ -120,6 +145,8 @@ export const ExemplosArteContaoner = styled.div`
       cursor: pointer;
       height: 300px;
       max-height: 100%;
+
+      position: relative;
     }
   }
 
@@ -133,7 +160,8 @@ export const ExemplosArteContaoner = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0px 15px;
-    background: white;
+    background: #e6ffec;
+    border-radius: 30px;
 
     font-size: 24px;
 
@@ -143,11 +171,11 @@ export const ExemplosArteContaoner = styled.div`
   }
 
   .right {
-    right: 0px;
+    right: 10px;
   }
 
   .left {
-    left: 0px;
+    left: 10px;
     svg {
       transform: rotate(180deg);
     }

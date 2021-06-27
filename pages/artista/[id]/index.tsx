@@ -1,25 +1,21 @@
 import Artista from "@/src/artista/artista";
 import { ArtistaModelo, dataArtista } from "@/src/data";
+import axios from "axios";
 import { Params } from "next/dist/next-server/server/router";
 
-export const getStaticProps = ({ params }: Params) => {
+export const getServerSideProps = async ({ params }: Params) => {
   const { id } = params;
 
-  const artista = dataArtista.find((artiItem) => artiItem.id.toString() === id);
+  const { data: artista } = await axios.get(
+    "http://localhost:3000/api/artist/" + id
+  );
+
+  console.log(`artista`, artista);
 
   return {
     props: {
       artista,
     },
-  };
-};
-
-export const getStaticPaths = () => {
-  return {
-    paths: dataArtista.map((artItem) => ({
-      params: { id: artItem.id.toString() },
-    })), // See the "paths" section below
-    fallback: false, // See the "fallback" section below
   };
 };
 

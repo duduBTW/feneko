@@ -13,22 +13,51 @@ export default function CardArtista({
   select,
   checked,
 }: {
-  artista: ArtistaModelo;
+  artista: any;
   index: number;
   setOpen: any;
   select: boolean;
   checked: [number[], React.Dispatch<React.SetStateAction<number[]>>];
 }) {
   const history = useRouter();
+  const [selecionado, setChecked] = select ? checked : [false, () => {}];
   const redirectArtista = () => {
-    history.push(history.asPath + `/${artista.id}`);
+    history.push(history.asPath + `/${artista.artist._id}`);
+  };
+
+  const changeCheched = () => {
+    // if (Boolean(selecionado.find((selec) => selec === artista.id))) {
+    //   const newValue = selecionado.filter((selec) => selec !== artista.id);
+    //   setChecked(newValue);
+    //   return;
+    // }
+    setChecked((c) => [...c, artista.id]);
   };
 
   return (
-    <CardArtistaContainer>
-      <InfoArtista onClick={redirectArtista} {...artista} />
-      <ExemplosArte artes={artista.artes} setOpen={setOpen} index={index} />
-      {select && <BotaoSelecioanr checked={checked} id={artista.id} />}
+    <CardArtistaContainer
+      onClick={(e) => {
+        e.stopPropagation();
+
+        if (select) {
+          changeCheched();
+        } else {
+          redirectArtista();
+        }
+      }}
+    >
+      <InfoArtista artista={artista.artist} />
+      {artista.art.length > 0 ? (
+        <ExemplosArte artes={artista.art} setOpen={setOpen} index={index} />
+      ) : (
+        <div>Not found</div>
+      )}
+      {select && (
+        <BotaoSelecioanr
+          // checked={Boolean(selecionado.find((selec) => selec === artista?.id))}
+          checked={false}
+        />
+      )}
     </CardArtistaContainer>
   );
 }

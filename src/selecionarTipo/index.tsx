@@ -9,6 +9,7 @@ import { RootModel } from "../redux/reducers";
 import { OrderModel, orderType } from "../redux/reducers/orderReducer";
 import CardTipo from "./card";
 import useTranslation from "next-translate/useTranslation";
+import { IFenekoTipoPedido } from "../models/itemPedido";
 
 export interface TipoModel {
   type: orderType;
@@ -55,7 +56,11 @@ const tipos: TipoModel[] = [
   },
 ];
 
-export default function SelecionarTipo() {
+export default function SelecionarTipo({
+  pedidos,
+}: {
+  pedidos: IFenekoTipoPedido[];
+}) {
   const order = useSelector<RootModel, OrderModel>((state) => state.order);
   const [selecionados, setSelecionados] = useState<number[]>(
     order.orders.map((order) => tipos.findIndex((tipo) => tipo.type === order))
@@ -86,12 +91,12 @@ export default function SelecionarTipo() {
     <SelecionarTipoContainer>
       <Title>{t("common:tituloSelecionarTipo")}</Title>
       <div className="cards">
-        {tipos.map((tipo, index) => (
+        {pedidos.map((pedido, index) => (
           <CardTipo
-            selected={!!selecionados.includes(index)}
-            index={index}
+            selected={!!selecionados.includes(pedido._id)}
+            index={pedido._id}
             onClick={addSelecionado}
-            data={tipo}
+            data={pedido}
           />
         ))}
       </div>

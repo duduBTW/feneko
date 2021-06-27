@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 export const ItemPedidoContainer = styled.div`
   display: flex;
-  padding: 100px 0px;
+  padding: 50px 0px;
   @media only screen and (max-width: 1200px) {
     justify-content: flex-end;
     padding: 50px 0px;
   }
   border-bottom: 1px dashed lightgrey;
+  flex-direction: column-reverse;
 
   @media only screen and (max-width: 1200px) {
-    flex-direction: column-reverse;
   }
 
   @media only screen and (max-width: 600px) {
@@ -44,7 +44,8 @@ export const ItemPedidoContainer = styled.div`
       padding-right: 0px;
     }
 
-    padding-right: 180px;
+    /* padding-right: 50%; */
+
     position: relative;
 
     .line {
@@ -79,10 +80,10 @@ export const ItemPedidoContainer = styled.div`
   }
 
   .scroll {
-    position: sticky;
+    /* position: sticky; */
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    /* align-items: flex-end; */
     @media only screen and (max-width: 1200px) {
       position: relative;
     }
@@ -214,13 +215,19 @@ export const ItemPedidoContainer = styled.div`
   }
 
   .mobile-header {
+    max-width: 500px;
+
     img {
       max-width: 100%;
+      max-height: 300px;
+      border-radius: 30px;
     }
 
     p {
-      padding: 30px;
+      padding: 10px 0px;
       background: white;
+      font-size: 1.2rem;
+      line-height: 1.75rem;
     }
 
     h1 {
@@ -234,7 +241,7 @@ export const ItemPedidoContainer = styled.div`
 
 export const AddArtistContainer = styled(motion.div)`
   cursor: pointer;
-  border: 1px dashed ${(props) => props.theme.palette.second};
+  border: 1px solid ${(props) => props.theme.palette.second};
   transition: all 0.2s ease-in-out;
   height: 120px;
   width: 100%;
