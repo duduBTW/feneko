@@ -4,7 +4,9 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data: pedidos } = await axios.get("/api/pedido");
+  const { data: pedidos } = await axios.get(
+    `${process.env.URL_BASE}/api/pedido`
+  );
   console.log(pedidos);
 
   return {

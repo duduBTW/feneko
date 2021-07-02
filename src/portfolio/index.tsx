@@ -113,7 +113,9 @@ export default function Portfolio() {
   };
 
   useEffect(() => {
-    axios.get("/api/portfolio").then(({ data }) => setportItems(data));
+    axios
+      .get(`${process.env.URL_BASE}/api/portfolio`)
+      .then(({ data }) => setportItems(data));
   }, []);
 
   return (

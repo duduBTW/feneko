@@ -44,7 +44,7 @@ export default function ArtistImageChanger() {
 
   const getArtist = async (id: String) => {
     const { data: artistas } = await axios.get(
-      "/api/artist/" + artistModal?.[0]
+      `${process.env.URL_BASE}/api/artist/` + artistModal?.[0]
     );
 
     setArtistaSelecionado(artistas);

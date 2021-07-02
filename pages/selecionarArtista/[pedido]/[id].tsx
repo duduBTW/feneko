@@ -23,7 +23,9 @@ import { Params } from "next/dist/next-server/server/router";
 export const getServerSideProps = async ({ params }: Params) => {
   const { id, pedido } = params;
   // const artistas = dataArtista.filter((artiItem) => artiItem.tags.includes(id));
-  const { data: artistas } = await axios.get("/api/pedido/item/" + id);
+  const { data: artistas } = await axios.get(
+    `${process.env.URL_BASE}/api/pedido/item/` + id
+  );
 
   return {
     props: {

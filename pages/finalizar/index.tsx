@@ -41,9 +41,12 @@ export default function Finalizar() {
   }, [orders]);
 
   const fetchData = async () => {
-    const { data: pedidos } = await axios.get("/api/pedido/item", {
-      params: { pedido: orders },
-    });
+    const { data: pedidos } = await axios.get(
+      `${process.env.URL_BASE}/api/pedido/item`,
+      {
+        params: { pedido: orders },
+      }
+    );
 
     setTipoPedido(pedidos);
   };
