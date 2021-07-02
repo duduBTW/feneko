@@ -29,12 +29,9 @@ export default function PedidoPage() {
   }, [orders]);
 
   const fetchData = async () => {
-    const { data: pedidos } = await axios.get(
-      "http://localhost:3000/api/pedido/item",
-      {
-        params: { pedido: orders },
-      }
-    );
+    const { data: pedidos } = await axios.get("/api/pedido/item", {
+      params: { pedido: orders },
+    });
 
     setTipoPedido(pedidos);
   };

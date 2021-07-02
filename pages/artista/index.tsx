@@ -3,7 +3,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data } = await axios.get("http://localhost:3000/api/artist");
+  const { data } = await axios.get("/api/artist");
 
   return {
     props: {

@@ -6,9 +6,7 @@ import { Params } from "next/dist/next-server/server/router";
 export const getServerSideProps = async ({ params }: Params) => {
   const { id } = params;
 
-  const { data: artista } = await axios.get(
-    "http://localhost:3000/api/artist/" + id
-  );
+  const { data: artista } = await axios.get("/api/artist/" + id);
 
   console.log(`artista`, artista);
 
