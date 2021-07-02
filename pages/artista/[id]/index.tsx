@@ -24,5 +24,6 @@ export default function ArtistaItemPage({
 }: {
   artista: ArtistaModelo;
 }) {
+  console.log(`artista`, artista);
   return <Artista artista={artista} />;
 }

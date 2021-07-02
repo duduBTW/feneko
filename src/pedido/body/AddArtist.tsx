@@ -7,7 +7,7 @@ import { GrFormAdd } from "react-icons/gr";
 import useTranslation from "next-translate/useTranslation";
 
 const add: Variants = {
-  hover: { x: -200 },
+  hover: { x: "-80%" },
 };
 
 const desc: Variants = {
@@ -18,19 +18,28 @@ const desc: Variants = {
       delay: 0.2,
     },
   },
-  rest: { y: "-200%", opacity: 0 },
+  rest: { y: "-100%", opacity: 0 },
 };
 
-export function AddArtist({ type }: { type: Tags }) {
+export function AddArtist({
+  type,
+  id,
+  pedidoId,
+}: {
+  type: Tags;
+  id: string;
+  pedidoId: string;
+}) {
   const history = useRouter();
   const { t } = useTranslation();
+  console.log(`id`, id);
 
   return (
     <AddArtistContainer
       whileHover="hover"
       initial="rest"
       animate="rest"
-      onClick={() => history.push(`/selecionarArtista/${type}`)}
+      onClick={() => history.push(`/selecionarArtista/${pedidoId}/${id}`)}
     >
       <motion.div style={{ display: "flex" }} variants={add}>
         <GrFormAdd />

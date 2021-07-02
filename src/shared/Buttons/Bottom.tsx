@@ -8,10 +8,12 @@ export default function ButtonsBottom({
   onCancel,
   nextLabel,
   backLabel,
+  nextType = "button",
 }: {
   onSubmit: () => void;
   onCancel: () => void;
   nextLabel?: string;
+  nextType?: string;
   backLabel?: string;
 }) {
   const { t } = useTranslation();
@@ -40,6 +42,8 @@ export default function ButtonsBottom({
         whileTap={{
           y: 5,
         }}
+        //@ts-ignore
+        type={nextType}
         exit={{ x: 300 }}
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

@@ -1,5 +1,6 @@
 import { ArtistaModelo, dataArtista, Tags } from "@/src/data";
 import SelecionarArtista from "@/src/selecionarArtista";
+import axios from "axios";
 import { Params } from "next/dist/next-server/server/router";
 
 // export const getStaticPaths = () => {
@@ -19,23 +20,29 @@ import { Params } from "next/dist/next-server/server/router";
 //   };
 // };
 
-export const getServerSideProps = ({ params }: Params) => {
-  const { id } = params;
-  const artistas = dataArtista.filter((artiItem) => artiItem.tags.includes(id));
+export const getServerSideProps = async ({ params }: Params) => {
+  const { id, pedido } = params;
+  // const artistas = dataArtista.filter((artiItem) => artiItem.tags.includes(id));
+  const { data: artistas } = await axios.get(
+    "http://localhost:3000/api/pedido/item/" + id
+  );
 
   return {
     props: {
       artistas,
+      pedido,
     },
   };
 };
 
 export default function SelecionarArtistaPage({
   artistas,
+  pedido,
 }: {
   artistas: ArtistaModelo[];
+  pedido: string;
 }) {
-  return <SelecionarArtista artistas={artistas} />;
+  return <SelecionarArtista pedido={pedido} artistas={artistas} />;
 }
 
 SelecionarArtistaPage.loc = 3;

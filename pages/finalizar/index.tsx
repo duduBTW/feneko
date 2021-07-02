@@ -1,113 +1,162 @@
 import ButtonsBottom from "@/shared/Buttons/Bottom";
-import { Tags } from "@/src/data";
 import { FinalizarContainer } from "@/src/finalizar/styles";
-import { artTypes } from "@/src/pedido/body/art";
-import { vTuberTypes } from "@/src/pedido/body/vTuber";
+import { IFenekoTipoPedido } from "@/src/models/itemPedido";
+import { ItemPedidoCompact, ItemPedidoCompactString } from "@/src/pedido/item";
 import { RootModel } from "@/src/redux/reducers";
-import { OrderModel, orderType } from "@/src/redux/reducers/orderReducer";
+import { OrderModel } from "@/src/redux/reducers/orderReducer";
+import { Title } from "@/src/styles";
+import { Box, CircularProgress, Typography } from "@material-ui/core";
+import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
-import { Title } from "@/src/styles";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Finalizar() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
+  const [formData, setFormData] = useState({});
 
+  const handleClange = (e: any) => {
+    setFormData((data) => ({
+      ...data,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const [success, setSuccess] = useState(false);
   const { orders, descriptions, otderItems } = useSelector<
     RootModel,
     OrderModel
   >((state) => state.order);
+  const [tipoPedidos, setTipoPedido] = useState<IFenekoTipoPedido[] | null>(
+    null
+  );
+
   const history = useRouter();
 
   useEffect(() => {
     if (!(orders?.length > 0)) history.push("/selecionarTipo");
+
+    fetchData();
   }, [orders]);
 
-  const getArtists = (order: orderType) => {
-    let types: Tags[] = [];
-    switch (order) {
-      case "art":
-        types = artTypes;
-        break;
-      case "vtuber":
-        types = vTuberTypes;
-        break;
-    }
-
-    const itemsSelected = otderItems.filter((item) =>
-      types.includes(item.type)
+  const fetchData = async () => {
+    const { data: pedidos } = await axios.get(
+      "http://localhost:3000/api/pedido/item",
+      {
+        params: { pedido: orders },
+      }
     );
 
-    return types.map((type) => {
-      const items = itemsSelected.filter((item) => type === item.type);
-
-      if (items.length <= 0) return;
-
-      return (
-        <div>
-          <h2>{type}</h2>
-          <div className="desc">
-            {items.map((item) => (
-              <span>{item.artist.name}</span>
-            ))}
-          </div>
-        </div>
-      );
-    });
+    setTipoPedido(pedidos);
   };
+
+  function sendEmail(e: any) {
+    e.preventDefault();
+    let data = "";
+
+    tipoPedidos?.map((tipoPedido) => {
+      data = data += ItemPedidoCompactString({
+        image: tipoPedido.image,
+        // @ts-ignore
+        types: tipoPedido.tags,
+        title: lang == "en" ? tipoPedido.titleEn : tipoPedido.titlePt,
+        desc: lang == "en" ? tipoPedido.descEn : tipoPedido.descPt,
+        type: tipoPedido._id,
+        otderItems,
+        descriptions,
+        lang,
+        descricao: t("common:descricao"),
+        tipo: t("common:tipo"),
+        naoInformada: t("common:naoInformada"),
+      });
+    });
+
+    axios
+      .post("https://api.emailjs.com/api/v1.0/email/send", {
+        service_id: "service_fn8g7gj",
+        template_id: "template_g4c4tii",
+        user_id: "user_pmYRF2IiMgo3UnQAGAvp6",
+        template_params: {
+          data: data,
+          ...formData,
+        },
+      })
+      .then(() => setSuccess(true))
+      .catch(() => setSuccess(false));
+  }
+
+  if (success) {
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        mt={6}
+      >
+        <Typography variant="h3">
+          {t("common:sucess")}Message sended with sucess
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <FinalizarContainer className="default-container">
       <div className="finish">
-        <Title>{t("common:tituloFormulario")}</Title>
+        <Title style={{ fontSize: 42 }}>{t("common:tituloFormulario")}</Title>
         <br />
         <br />
-        <form>
+        <form onSubmit={sendEmail}>
           <div className="input">
             <label htmlFor="name">{t("common:nome")}</label>
-            <input name="name" />
+            <input onChange={handleClange} name="name" />
           </div>
 
           <div className="input">
             <label htmlFor="email">Email</label>
-            <input name="email" />
+            <input onChange={handleClange} name="email" />
           </div>
           <div className="input">
             <label htmlFor="discord">Discord</label>
-            <input name="discord" />
+            <input onChange={handleClange} name="discord" />
           </div>
+
+          <ButtonsBottom
+            nextType={"submit"}
+            backLabel={t("common:voltar")}
+            onCancel={() => history.push("/pedido")}
+            nextLabel={t("common:finalizar")}
+            onSubmit={() => {}}
+          />
         </form>
         <br />
         <br />
-        <ButtonsBottom
-          backLabel={t("common:voltar")}
-          onCancel={() => history.push("/pedido")}
-          nextLabel={t("common:finalizar")}
-          onSubmit={() => {}}
-        />
       </div>
+      {!tipoPedidos ? (
+        <CircularProgress />
+      ) : (
+        <div className="info">
+          <Title style={{ fontSize: 32, paddingLeft: 50 }}>
+            {t("common:tituloInfoPedidos")}
+          </Title>
 
-      <div className="info">
-        {/* <Title>{t("common:tituloInfoPedidos")}</Title>
-          <br />
-          <br /> */}
-        {orders.map((order) => (
-          <div className="order-item">
-            <div>
-              <h2>{t("common:tipo")}</h2>
-              <div className="desc">{order}</div>
-            </div>
-            {getArtists(order)}
-            <div>
-              <h2>{t("common:descricao")}</h2>
-              <div className="desc">
-                {descriptions[order] || t("common:naoInformada")}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+          {tipoPedidos.map((tipoPedido) => {
+            return (
+              <ItemPedidoCompact
+                key={tipoPedido._id}
+                image={tipoPedido.image}
+                // @ts-ignore
+                types={tipoPedido.tags}
+                title={lang == "en" ? tipoPedido.titleEn : tipoPedido.titlePt}
+                desc={lang == "en" ? tipoPedido.descEn : tipoPedido.descPt}
+                type={tipoPedido._id}
+              />
+            );
+          })}
+        </div>
+      )}
     </FinalizarContainer>
   );
 }

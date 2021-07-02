@@ -6,11 +6,13 @@ import { useSelector } from "react-redux";
 import { RootModel } from "@/src/redux/reducers";
 import { GlobalModel } from "@/src/redux/reducers/globalReducers";
 import { useRouter } from "next/dist/client/router";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Bread() {
   const { loc: current } = useSelector<RootModel, GlobalModel>(
     (state) => state.global
   );
+  const { lang } = useTranslation();
   const history = useRouter();
 
   if (!current) return null;
@@ -35,7 +37,9 @@ export default function Bread() {
             active={item.id === current}
           >
             <GrFormNext className="icon" />
-            <div className="label">{item?.name}</div>
+            <div className="label">
+              {lang === "en" ? item?.nameEn : item?.namePt}
+            </div>
           </BreadItem>
         </>
       ))}

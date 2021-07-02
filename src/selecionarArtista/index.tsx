@@ -16,32 +16,40 @@ import { SelecionarArtistaContainer } from "./styles";
 
 export default function SelecionarArtista({
   artistas,
+  pedido,
 }: {
-  artistas: ArtistaModelo[];
+  artistas: any[];
+  pedido: string;
 }) {
   // const [open, setOpen] = useState(false);
   const history = useRouter();
   const dispatch = useDispatch();
   const checkedItem = useState<number[]>([]);
+  const [def, setDef] = useState<any[]>([]);
   const otderItems = useSelector<RootModel, OrderItemModel[]>(
     (state) => state.order.otderItems
   );
 
   const { t } = useTranslation();
 
-  // TODO FIX
-  const setOpen = (id: number) => dispatch(setArtistModal([id, 0]));
+  const setOpen = (id: string, index: string) =>
+    dispatch(setArtistModal([id, index]));
 
   const send = () => {
     dispatch(
       addArtist(
-        checkedItem[0].map((item) => ({
-          artist: artistas.find(
-            (artista) => artista.id === item
-          ) as ArtistaModelo,
-          type: history.query.id?.toString() as Tags,
-          id: uuidv4(),
-        }))
+        checkedItem[0].map((item) => {
+          const artistData = artistas.find(
+            (artista) => artista.artist._id === item
+          ).artist;
+          return {
+            pedido,
+            artist: artistData._id,
+            type: history.query.id?.toString() as Tags,
+            id: uuidv4(),
+            artistData,
+          };
+        })
       )
     );
 
@@ -50,15 +58,16 @@ export default function SelecionarArtista({
 
   useEffect(() => {
     const itemsSelected = otderItems.filter(
-      (item) => item.type === (history.query.id?.toString() as Tags)
+      (item) => item.type === history.query.id?.toString()
     );
     let selected: any[] = [];
     artistas.map((artista) =>
-      itemsSelected.some(({ artist }) => artist.id == artista.id)
-        ? (selected = [...selected, artista.id])
+      itemsSelected.some(({ artist }) => artista.artist._id == artist)
+        ? (selected = [...selected, artista.artist._id])
         : null
     );
 
+    setDef(selected);
     checkedItem[1](selected);
   }, []);
 
@@ -70,6 +79,8 @@ export default function SelecionarArtista({
           position: "sticky",
           top: 60,
           background: "white",
+          zIndex: 50,
+          fontSize: 32,
         }}
       >
         (
@@ -87,10 +98,11 @@ export default function SelecionarArtista({
       </Title>
       {artistas.map((artist, index) => (
         <CardArtista
+          def={def}
           checked={checkedItem}
           select
           artista={artist}
-          setOpen={() => setOpen(artist.id)}
+          setOpen={(i: string) => setOpen(artist.artist._id, i)}
           index={index}
           key={index}
         />

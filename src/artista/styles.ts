@@ -158,9 +158,11 @@ export const ArtistaContainer = styled.div`
     flex-direction: column;
 
     gap: 40px;
+    margin-bottom: 15px;
+
     .main {
       padding-top: 40px;
-      height: calc(75vh - 2px - 90px);
+      height: calc(75vh - 2px - 125px);
       filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.25));
     }
 

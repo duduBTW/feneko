@@ -6,23 +6,19 @@ export type orderType = "art" | "vtuber" | "design";
 export interface OrderItemModel {
   type: Tags;
   id: string;
-  artist: ArtistaModelo;
+  artist: any;
 }
 
 export interface OrderModel {
-  orders: orderType[];
+  orders: string[];
   otderItems: OrderItemModel[];
-  descriptions: { [K in orderType]: string };
+  descriptions: any;
 }
 
 const defaultState: OrderModel = {
   orders: [],
   otderItems: [],
-  descriptions: {
-    art: "",
-    design: "",
-    vtuber: "",
-  },
+  descriptions: {},
 };
 
 const orderReducer = (

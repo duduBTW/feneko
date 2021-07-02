@@ -11,7 +11,8 @@ import { IFenekoTag } from "./tags";
  * @param artes:Arte[]
  */
 export interface IFeneko extends Document {
-  types: IFenekoTag["_id"];
+  types: IFenekoTag["_id"][];
+  typeData?: IFenekoTag[] | null;
   name: string;
   descEn: string;
   descPt: string;

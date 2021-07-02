@@ -62,16 +62,15 @@ export default function SelecionarTipo({
   pedidos: IFenekoTipoPedido[];
 }) {
   const order = useSelector<RootModel, OrderModel>((state) => state.order);
-  const [selecionados, setSelecionados] = useState<number[]>(
-    order.orders.map((order) => tipos.findIndex((tipo) => tipo.type === order))
-  );
+  const [selecionados, setSelecionados] = useState<string[]>(order.orders);
+  // order.orders.map((order) => tipos.findIndex((tipo) => tipo.type === order))
 
   const dispatch = useDispatch();
   const history = useRouter();
 
   const { t } = useTranslation();
 
-  const addSelecionado = (data: number) => {
+  const addSelecionado = (data: string) => {
     if (!!selecionados.includes(data)) {
       setSelecionados((s) => s.filter((sItem) => sItem !== data));
     } else {
@@ -80,9 +79,7 @@ export default function SelecionarTipo({
   };
 
   const continueOrder = () => {
-    dispatch(
-      setTypes(selecionados.map((selecionado) => tipos[selecionado].type))
-    );
+    dispatch(setTypes(selecionados));
 
     history.push("/pedido");
   };
@@ -94,7 +91,7 @@ export default function SelecionarTipo({
         {pedidos.map((pedido, index) => (
           <CardTipo
             selected={!!selecionados.includes(pedido._id)}
-            index={pedido._id}
+            index={index}
             onClick={addSelecionado}
             data={pedido}
           />

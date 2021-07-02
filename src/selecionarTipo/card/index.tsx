@@ -7,7 +7,7 @@ import { CardTipoContainer } from "./styles";
 
 interface CardTipoProps {
   data: IFenekoTipoPedido;
-  onClick: (data: number) => void;
+  onClick: (data: string) => void;
   index: number;
   selected: boolean;
 }

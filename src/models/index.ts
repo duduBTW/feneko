@@ -24,7 +24,7 @@ const connectDB = (handler: any) => async (req: any, res: any) => {
     return handler(req, res);
   }
   // Use new db connection
-  await mongoose.connect("", {
+  await mongoose.connect(process.env.MOONGOSE_CONNECTION ?? "", {
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,

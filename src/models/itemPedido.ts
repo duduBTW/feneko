@@ -11,7 +11,8 @@ import { IFenekoTag } from "./tags";
  * @param image:string
  */
 export interface IFenekoTipoPedido extends Document {
-  types: IFenekoTag["_id"];
+  _id: string;
+  types: IFenekoTag["_id"][];
   name: string;
   titleEn: string;
   titlePt: string;

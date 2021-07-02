@@ -1,7 +1,7 @@
 import { OrderItemModel, orderType } from "../reducers/orderReducer";
 
 export type Action =
-  | { type: "SET_TYPES"; payload: orderType[] }
+  | { type: "SET_TYPES"; payload: string[] }
   | { type: "ADD_ARTISTS"; payload: OrderItemModel[] }
   | {
       type: "SET_DESCRIPTION";
@@ -9,7 +9,7 @@ export type Action =
     }
   | { type: "REMOVE_ARTIST"; payload: string };
 
-export const setTypes = (type: orderType[]): Action => ({
+export const setTypes = (type: string[]): Action => ({
   type: "SET_TYPES",
   payload: type,
 });

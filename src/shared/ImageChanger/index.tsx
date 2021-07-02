@@ -13,13 +13,16 @@ export default function ImageChanger({
   def,
 }: {
   images: { type: "image" | "video"; url: any }[];
-  def: number;
+  def?: number | string;
 }) {
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, images.length, page);
 
   useEffect(() => {
-    setPage([def, def > page ? 1000 : -1000]);
+    if (def) {
+      const index = images.map((item: any) => item._id)?.indexOf(def);
+      setPage([index, index > page ? 1000 : -1000]);
+    }
   }, [def]);
 
   const variants = {
@@ -72,7 +75,7 @@ export default function ImageChanger({
               zIndex: 10,
             }}
             key={page}
-            src={images[imageIndex].url}
+            src={images?.[imageIndex]?.url}
             custom={direction}
             variants={variants}
             initial="enter"

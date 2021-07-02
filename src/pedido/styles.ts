@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const ItemPedidoContainer = styled.div`
   display: flex;
+  margin: 0px auto;
   padding: 50px 0px;
   @media only screen and (max-width: 1200px) {
     justify-content: flex-end;
@@ -273,7 +274,7 @@ export const AddArtistContainer = styled(motion.div)`
     color: grey;
     max-width: 40%;
 
-    right: 150px;
+    right: 20px;
   }
 `;
 

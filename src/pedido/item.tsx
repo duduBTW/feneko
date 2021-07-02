@@ -1,12 +1,9 @@
-import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useMediaQuery } from "react-responsive";
-import { ArtistaModelo, Tags } from "../data";
 import { removeArtist, setDesc } from "../redux/actions/orderActions";
 import { RootModel } from "../redux/reducers";
-import { OrderModel, orderType } from "../redux/reducers/orderReducer";
+import { OrderModel } from "../redux/reducers/orderReducer";
 import { AddArtist } from "./body/AddArtist";
 import { ArtistSelectedContainer, ItemPedidoContainer } from "./styles";
 
@@ -15,8 +12,8 @@ interface ItemPedidoProps {
   image: string;
   desc: string;
   additionalInfo?: JSX.Element;
-  types: Tags[];
-  type: orderType;
+  types: any[];
+  type: string;
 }
 
 export default function ItemPedido({
@@ -30,13 +27,12 @@ export default function ItemPedido({
   const { otderItems, descriptions } = useSelector<RootModel, OrderModel>(
     (state) => state.order
   );
-  const isMobile = useMediaQuery({
-    query: "(max-width: 780px)",
-  });
   const dispatch = useDispatch();
-  const itemsSelected = otderItems.filter((item) => types.includes(item.type));
+  const itemsSelected = otderItems.filter((item) =>
+    types.map((i) => i._id).includes(item.type)
+  );
 
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   const removerArtista = (id: string) => {
     dispatch(removeArtist(id));
@@ -50,24 +46,34 @@ export default function ItemPedido({
     <ItemPedidoContainer>
       <div className="artist">
         {types &&
-          types.map((type) => {
+          types.map((typeI) => {
+            console.log(`typeI`, typeI._id);
             //Busca artitas selecionados do mesmo tipo
-            const items = itemsSelected.filter((item) => type === item.type);
+            const items: any[] = itemsSelected.filter(
+              (item) => typeI._id === item.type
+            );
 
             return (
               <>
                 <h2>
-                  {t(`common:${type}`)}{" "}
+                  {lang == "en" ? typeI.tituloEn : typeI.tituloPt}{" "}
                   {items?.length > 0 ? <span>({items.length})</span> : ""}
                 </h2>
-                {items.map((selected) => (
-                  <ArtistCard
-                    onRemover={() => removerArtista(selected.id)}
-                    artista={selected.artist}
-                    key={selected.artist.id}
-                  />
-                ))}
-                <AddArtist key={type} type={type} />
+                {items.map(
+                  ({ artistData, id }: { artistData: any; id: string }) => (
+                    <ArtistCard
+                      onRemover={() => removerArtista(id)}
+                      artista={artistData}
+                      key={artistData._id}
+                    />
+                  )
+                )}
+                <AddArtist
+                  key={typeI._id}
+                  id={typeI._id}
+                  pedidoId={type}
+                  type={lang == "en" ? typeI.tituloEn : typeI.tituloPt}
+                />
               </>
             );
           })}
@@ -78,43 +84,160 @@ export default function ItemPedido({
         <textarea
           onChange={changeValue}
           value={descriptions[type]}
-          placeholder={t("common:placeholder", { title: type })}
+          placeholder={t("common:placeholder", { title: title })}
         />
         <div className="line"> </div>
       </div>
-      {!isMobile ? (
-        <div className="mobile-header">
-          <h1>{title}</h1>
-          <img src={image} />
-          <p>{desc}</p>
-        </div>
-      ) : (
-        <div className="scroll">
-          <div className="container">
-            <div className="title">
-              <h1>{title}</h1>
-            </div>
-            <div className="image">
-              <div
-                className="background"
-                style={{ backgroundImage: `url('${image}')` }}
-              ></div>
-              <div className="internal"></div>
-            </div>
-            <motion.p>{desc}</motion.p>
-          </div>
-          {additionalInfo}
-        </div>
-      )}
+      <div className="mobile-header">
+        <h1>{title}</h1>
+        <img src={image} />
+        <p>{desc}</p>
+      </div>
     </ItemPedidoContainer>
   );
+}
+
+export function ItemPedidoCompact({
+  title,
+  image,
+  desc,
+  additionalInfo,
+  types,
+  type,
+}: ItemPedidoProps) {
+  const { otderItems, descriptions } = useSelector<RootModel, OrderModel>(
+    (state) => state.order
+  );
+  const itemsSelected = otderItems.filter((item) =>
+    types.map((i) => i._id).includes(item.type)
+  );
+
+  const { t, lang } = useTranslation();
+
+  return (
+    <div className="order-item">
+      <div>
+        <div className="mobile-header">
+          <h2>{t("common:tipo")}</h2>
+          <div className="desc">{title}</div>
+        </div>
+        {types &&
+          types.map((typeI) => {
+            console.log(`typeI`, typeI._id);
+            //Busca artitas selecionados do mesmo tipo
+            const items: any[] = itemsSelected.filter(
+              (item) => typeI._id === item.type
+            );
+            if (!items) return;
+
+            return (
+              <>
+                {items.length > 0 ? (
+                  <div>
+                    <h2>
+                      {lang == "en" ? typeI.tituloEn : typeI.tituloPt}{" "}
+                      {items?.length > 0 ? <span>({items.length})</span> : ""}
+                    </h2>
+                    <div className="desc">
+                      {items.map(
+                        ({
+                          artistData,
+                          id,
+                        }: {
+                          artistData: any;
+                          id: string;
+                        }) => (
+                          // <ArtistCard
+                          //   onRemover={() => removerArtista(id)}
+                          //   artista={artistData}
+                          //   key={artistData._id}
+                          // />
+                          <span>{artistData.name}</span>
+                        )
+                      )}
+                    </div>
+                  </div>
+                ) : null}
+              </>
+            );
+          })}
+      </div>
+
+      <div>
+        <h2>{t("common:descricao")}</h2>
+        <div className="desc">
+          {descriptions[type] || t("common:naoInformada")}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ItemPedidoCompactString({
+  title,
+  image,
+  desc,
+  additionalInfo,
+  types,
+  type,
+  otderItems,
+  descriptions,
+  lang,
+  descricao,
+  tipo,
+  naoInformada,
+}: any) {
+  const itemsSelected = otderItems.filter((item: any) =>
+    types.map((i: any) => i._id).includes(item.type)
+  );
+
+  return `<div className="order-item">
+      <div>
+        <div className="mobile-header">
+          <h2>${tipo}</h2>
+          <div className="desc">${title}</div>
+        </div>
+        ${
+          types
+            ? types.map((typeI: any) => {
+                //Busca artitas selecionados do mesmo tipo
+                const items: any[] = itemsSelected.filter(
+                  (item: any) => typeI._id === item.type
+                );
+                if (!items) return;
+
+                return items.length > 0
+                  ? `<hr/><div>
+                    <h2>
+                      ${lang == "en" ? typeI.tituloEn : typeI.tituloPt}
+                    </h2>
+                    <div className="desc">
+                      ${items.map(
+                        ({ artistData, id }: { artistData: any; id: string }) =>
+                          `<span>${artistData.name}</span>`
+                      )}
+                    </div>
+                  </div>`
+                  : "";
+              })
+            : ""
+        }
+      </div>
+
+      <div>
+        <h2>${descricao}</h2>
+        <div className="desc">
+          ${descriptions[type] || naoInformada}
+        </div>
+      </div>
+    </div>`;
 }
 
 function ArtistCard({
   artista,
   onRemover,
 }: {
-  artista: ArtistaModelo;
+  artista: any;
   onRemover: () => void;
 }) {
   return (

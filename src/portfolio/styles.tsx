@@ -41,7 +41,7 @@ export const PortfolioContainer = styled(motion.div)`
     }
 
     @media only screen and (max-width: 1024px) {
-      grid-template-columns: repeat(3, 50%);
+      grid-template-columns: repeat(2, 50%);
       gap: 30px;
       padding: 30px 50px;
     }
@@ -53,6 +53,7 @@ export const PortfolioContainer = styled(motion.div)`
     }
 
     .item {
+      border-radius: 5px;
       height: auto;
       box-sizing: border-box;
       overflow: hidden;

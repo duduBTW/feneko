@@ -11,6 +11,7 @@ import { setArtistModal } from "../redux/actions/globalActions";
 import useTranslation from "next-translate/useTranslation";
 import axios from "axios";
 import { IFenekoArte } from "../models/art";
+import { CircularProgress } from "@material-ui/core";
 
 const MenuItem = dynamic(() => import("@material-ui/core/MenuItem"), {
   ssr: false,
@@ -107,9 +108,8 @@ export default function Portfolio() {
   const { t } = useTranslation();
   const [portItems, setportItems] = useState<null | IFenekoArte[]>();
 
-  const open = (id: number, index: number) => {
-    console.log(`index`, index);
-    dispatch(setArtistModal([id, index]));
+  const open = (id: string, index: number) => {
+    dispatch(setArtistModal([id, index.toString()]));
   };
 
   useEffect(() => {
@@ -139,29 +139,22 @@ export default function Portfolio() {
         variants={container}
         className="content"
       >
-        {portItems &&
+        {portItems ? (
           portItems.map(
             (
-              { url, artist: nomeArtista, _id: idArtista, largura, altura },
+              {
+                url,
+                artist: nomeArtista,
+                _id: idArtista,
+                largura,
+                altura,
+                title,
+              },
               index
             ) => (
               <motion.div
                 key={idArtista}
-                onClick={() =>
-                  open(
-                    idArtista,
-                    dataArtista
-                      .map((item) =>
-                        item.id === idArtista
-                          ? item.artes.map((arte, index) =>
-                              arte.url === url ? index : null
-                            )
-                          : null
-                      )
-                      .find((item) => item !== null)
-                      ?.find((item) => item !== null) ?? 0
-                  )
-                }
+                onClick={() => open(nomeArtista, idArtista)}
                 className="item"
                 variants={item}
                 style={{
@@ -182,7 +175,7 @@ export default function Portfolio() {
                   variants={slashMotion}
                 >
                   <motion.div className="artist" variants={slashMotion2}>
-                    {nomeArtista}
+                    {title}
                   </motion.div>
                   <motion.div
                     variants={slashMotion4}
@@ -203,7 +196,10 @@ export default function Portfolio() {
                 </motion.div>
               </motion.div>
             )
-          )}
+          )
+        ) : (
+          <CircularProgress />
+        )}
       </motion.div>
     </PortfolioContainer>
   );

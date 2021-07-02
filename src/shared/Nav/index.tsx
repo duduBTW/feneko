@@ -123,6 +123,14 @@ export default function NavBar() {
                 {t(link.name)}
               </div>
             ))}
+            <select
+              value={lang}
+              onChange={async (e) => await setLanguage(e.target.value)}
+              style={{ border: "none" }}
+            >
+              <option value="en">EN</option>
+              <option value="pt-BR">PT-BR</option>
+            </select>
           </SidenavContainer>
         )}
       </AnimatePresence>

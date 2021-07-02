@@ -9,25 +9,46 @@ import { Modal } from "../Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { ModalArtistContainer } from "./styles";
 import { useRouter } from "next/dist/client/router";
+import axios from "axios";
 
 export default function ArtistImageChanger() {
   const { artistModal } = useSelector<RootModel, GlobalModel>(
     (state) => state.global
   );
   const dispatch = useDispatch();
-  const [artistaSelecionado, setArtistaSelecionado] =
-    useState<ArtistaModelo | null>();
+  const [def, setDef] = useState(0);
+  const [artistaSelecionado, setArtistaSelecionado] = useState<any | null>();
 
   const history = useRouter();
   useEffect(() => {
-    console.log(
-      `dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null`,
-      dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null
-    );
-    setArtistaSelecionado(
-      dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null
-    );
+    // setArtistaSelecionado(
+    //   dataArtista.find((artist) => artist.id === artistModal?.[0]) ?? null
+    // );
+    if (artistModal?.[0]) {
+      getArtist(artistModal?.[0]);
+    } else {
+      setArtistaSelecionado(null);
+    }
   }, [artistModal]);
+
+  useEffect(() => {
+    if (artistaSelecionado) {
+      console.log(
+        "def: ",
+        artistaSelecionado.art
+          .map((item: any) => item._id)
+          .indexOf(artistModal?.[1] ?? "")
+      );
+    }
+  }, [artistaSelecionado]);
+
+  const getArtist = async (id: String) => {
+    const { data: artistas } = await axios.get(
+      "http://localhost:3000/api/artist/" + artistModal?.[0]
+    );
+
+    setArtistaSelecionado(artistas);
+  };
 
   const escFunction = useCallback((event) => {
     if (event.keyCode === 27) {
@@ -53,7 +74,7 @@ export default function ArtistImageChanger() {
               history.push(`/artista/${artistaSelecionado?.id}`);
             }}
           >
-            {artistaSelecionado?.name}
+            {artistaSelecionado?.artist?.name}
           </h1>
         </div>
         <AiOutlineClose
@@ -62,8 +83,8 @@ export default function ArtistImageChanger() {
         />
         {artistaSelecionado ? (
           <ImageChanger
-            def={artistModal?.[1] ?? 0}
-            images={artistaSelecionado.artes}
+            def={artistModal?.[1]}
+            images={artistaSelecionado.art}
           />
         ) : (
           <div></div>

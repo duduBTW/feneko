@@ -8,6 +8,7 @@ import { Blob } from "react-blob";
 import { BiArrowBack } from "react-icons/bi";
 import { ArtistaModelo, Tags } from "../data";
 import { useRouter } from "next/dist/client/router";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Artista({ artista }: { artista: any }) {
   const [selected, setSelected] = useState(0);
@@ -29,7 +30,7 @@ export default function Artista({ artista }: { artista: any }) {
         }}
       />
       <ArtistaContainer className="default-container">
-        <HeaderArtista {...artista.artist} />
+        <HeaderArtista {...artista.artist} typeData={artista.typeData} />
         <div className="port">
           <div className="main">
             <ImageChanger def={selected} images={artista?.art} />
@@ -49,18 +50,23 @@ export default function Artista({ artista }: { artista: any }) {
 
 interface InfoArtistaProps {
   name: string;
-  desc: string;
+  descEn: string;
+  descPt: string;
   profilePic: string;
-  tags: Tags[];
+  types: string[];
+  typeData: any;
 }
 
 export function HeaderArtista({
   name,
-  desc,
+  descEn,
+  descPt,
   profilePic,
-  tags,
+  typeData,
 }: InfoArtistaProps) {
   const history = useRouter();
+  const { lang, t } = useTranslation();
+
   return (
     <div className="header">
       <div className="pfp">
@@ -83,6 +89,9 @@ export function HeaderArtista({
                 // repeatType: "loop",
               },
             }}
+            whileTap={{
+              scale: 0.7,
+            }}
           >
             <BiArrowBack size="22px" />
           </motion.div>
@@ -90,17 +99,17 @@ export function HeaderArtista({
 
         <h1>{name}</h1>
       </div>
-      <div className="desc">{desc}</div>
+      <div className="desc">{lang === "en" ? descEn : descPt}</div>
       <div className="habilidades">
-        <div className="title">Habilidades</div>
+        <div className="title">{t("common:Habilidades")}</div>
         <div className="list">
-          {tags?.map((item) => (
+          {typeData?.map((item: any) => (
             <motion.div
               animate={{ background: "transparent" }}
               whileHover={{ background: "rgba(0, 0, 0, 0.1)" }}
               className="item"
             >
-              {item}
+              {lang === "en" ? item.tituloEn : item.tituloPt}
             </motion.div>
           ))}
         </div>

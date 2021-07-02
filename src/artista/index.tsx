@@ -11,7 +11,7 @@ export default function Artistas({ data }: { data: any }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const open = (id: number, index: number) => {
+  const open = (id: string, index: string) => {
     dispatch(setArtistModal([id, index]));
   };
 
@@ -23,7 +23,7 @@ export default function Artistas({ data }: { data: any }) {
           checked={checked}
           select={false}
           artista={artItem}
-          setOpen={(i: number) => open(artItem.id, i)}
+          setOpen={(i: string) => open(artItem.artist._id, i)}
           index={index}
           key={index}
         />

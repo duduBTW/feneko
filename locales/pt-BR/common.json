@@ -2,7 +2,8 @@
  "navPedido": "Fazer Pedido",
  "navPortfolio": "Galeria",
  "navArtistas": "Artistas",
-
+ 
+ "Habilidades": "Habilidades",
   "selecionado": "Selecionado",
   "umOuMias": "Selecione um ou mais itens para continuar",
   "tituloGaleria": "Galeria",
@@ -20,7 +21,8 @@
 
 
   "continuar": "Continuar",
-  "selecionar": "Selecionar",
+  "sucess": "Message sended with sucess",
+  "selecionar": "Confirmar",
   "cancelar": "Cancelar",
   "voltar": "Voltar",
   "finalizar": "Finalizar",

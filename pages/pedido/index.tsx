@@ -1,38 +1,68 @@
 import ButtonsBottom from "@/shared/Buttons/Bottom";
+import { IFenekoTipoPedido } from "@/src/models/itemPedido";
 import Art from "@/src/pedido/body/art";
 import Design from "@/src/pedido/body/design";
 import Vtuber from "@/src/pedido/body/vTuber";
 import HeaderPedido from "@/src/pedido/header";
+import ItemPedido from "@/src/pedido/item";
 import { RootModel } from "@/src/redux/reducers";
 import { OrderModel } from "@/src/redux/reducers/orderReducer";
+import { CircularProgress } from "@material-ui/core";
+import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function PedidoPage() {
   const { orders } = useSelector<RootModel, OrderModel>((state) => state.order);
+  const [tipoPedidos, setTipoPedido] = useState<IFenekoTipoPedido[] | null>(
+    null
+  );
   const history = useRouter();
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   useEffect(() => {
     if (!(orders?.length > 0)) history.push("/selecionarTipo");
+
+    fetchData();
   }, [orders]);
 
+  const fetchData = async () => {
+    const { data: pedidos } = await axios.get(
+      "http://localhost:3000/api/pedido/item",
+      {
+        params: { pedido: orders },
+      }
+    );
+
+    setTipoPedido(pedidos);
+  };
+
   return (
-    <div className="default-container">
+    <div className="default-container" style={{ maxWidth: 800 }}>
       <HeaderPedido />
-      {orders.map((orderItem) => {
-        switch (orderItem) {
-          case "art":
-            return <Art />;
-          case "design":
-            return <Design />;
-          case "vtuber":
-            return <Vtuber />;
-        }
-      })}
+      {tipoPedidos ? (
+        tipoPedidos.map((tipoPedido) => {
+          return (
+            <ItemPedido
+              key={tipoPedido._id}
+              image={tipoPedido.image}
+              // @ts-ignore
+              types={tipoPedido.tags}
+              title={lang == "en" ? tipoPedido.titleEn : tipoPedido.titlePt}
+              desc={lang == "en" ? tipoPedido.descEn : tipoPedido.descPt}
+              type={tipoPedido._id}
+            />
+          );
+        })
+      ) : (
+        <div style={{ margin: 50 }}>
+          <CircularProgress />
+        </div>
+      )}
       <ButtonsBottom
+        backLabel={t("common:voltar")}
         onCancel={() => history.push("/selecionarTipo")}
         nextLabel={t("common:continuar")}
         onSubmit={() => history.push("/finalizar")}

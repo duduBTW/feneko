@@ -17,6 +17,10 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
 
   filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.25));
 
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+  }
+
   background: ${(props) =>
     props.selected
       ? `linear-gradient(
@@ -76,10 +80,38 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
   }
 
   .descContainer {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     color: white;
     font-size: 16px;
     line-height: 26px;
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #e6ffec;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #c9c9c9;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    p {
+      max-height: 180px;
+      padding-right: 30px;
+    }
 
     position: absolute;
     top: 50%;

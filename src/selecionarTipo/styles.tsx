@@ -51,6 +51,9 @@ export const SelecionarTipoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-bottom: 30px;
+    position: sticky;
+    bottom: 10px;
 
     .selectMore {
       font-size: 22px;
@@ -89,7 +92,7 @@ export const ButtonOutline = styled(motion.button)`
   color: ${(props) => props.theme.palette.main};
   background: white;
   padding: 10px 40px;
-  width: 300px;
+  width: 250px;
   font-size: 22px;
   letter-spacing: 4px;
   @media only screen and (max-width: 900px) {

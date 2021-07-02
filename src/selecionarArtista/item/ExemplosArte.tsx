@@ -42,7 +42,7 @@ export function Arts({
           key={index}
           onClick={(e) => {
             e.stopPropagation();
-            setOpen(index);
+            setOpen(image._id);
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}

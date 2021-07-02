@@ -16,25 +16,29 @@ export const transform = (staticStr: any, ...tags: any) => {
 export default [
   {
     id: 1,
-    name: "Selecione o tipo",
+    namePt: "Selecione o tipo",
+    nameEn: "Select Type",
     link: transform`/selecionarTipo`,
   },
   {
     id: 2,
     before: 1,
-    name: "Informações do Pedido",
+    namePt: "Informações do Pedido",
+    nameEn: "Order Information",
     link: transform`/pedido`,
   },
   {
     id: 3,
     before: 2,
-    name: "Selecionar Artista",
+    namePt: "Selecionar Artista",
+    nameEn: "Select Artist",
     link: transform`/selecionarArtista`,
   },
   {
     id: 4,
     before: 2,
-    name: "Finalizar",
+    namePt: "Finalizar",
+    nameEn: "Finish",
     link: transform`/finalizar`,
   },
 ];

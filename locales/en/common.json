@@ -7,6 +7,7 @@
   "umOuMias": "Select one or more items to continue",
 
    "tituloGaleria": "Gallery",
+   "Habilidades": "Skills",
    "tituloSelecionarTipo": "Select the type",
    "mudarTipo": "Change Type",
    "adicionar": "Add",
@@ -19,7 +20,8 @@
    "placeholder": "ex: I want a {{title}} with...",
  
    "continuar": "Continue",
-   "selecionar": "Select",
+  "sucess": "Mensagem enviada com sucesso",
+   "selecionar": "Confirm",
    "cancelar": "Cancel",
    "voltar": "Back",
    "finalizar": "Finish",
