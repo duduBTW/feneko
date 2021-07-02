@@ -1,6 +1,6 @@
-import { ArtistaModelo, dataArtista, Tags } from "@/src/data";
+import { instance } from "@/shared/api";
+import { ArtistaModelo } from "@/src/data";
 import SelecionarArtista from "@/src/selecionarArtista";
-import axios from "axios";
 import { Params } from "next/dist/next-server/server/router";
 
 // export const getStaticPaths = () => {
@@ -23,9 +23,7 @@ import { Params } from "next/dist/next-server/server/router";
 export const getServerSideProps = async ({ params }: Params) => {
   const { id, pedido } = params;
   // const artistas = dataArtista.filter((artiItem) => artiItem.tags.includes(id));
-  const { data: artistas } = await axios.get(
-    `${process.env.URL_BASE}/api/pedido/item/` + id
-  );
+  const { data: artistas } = await instance.get(`/api/pedido/item/` + id);
 
   return {
     props: {

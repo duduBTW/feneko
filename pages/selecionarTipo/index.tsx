@@ -1,12 +1,10 @@
+import { instance } from "@/shared/api";
 import { IFenekoTipoPedido } from "@/src/models/itemPedido";
 import SelecionarTipo from "@/src/selecionarTipo";
-import axios from "axios";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data: pedidos } = await axios.get(
-    `${process.env.URL_BASE}/api/pedido`
-  );
+  const { data: pedidos } = await instance.get(`/api/pedido`);
   console.log(pedidos);
 
   return {

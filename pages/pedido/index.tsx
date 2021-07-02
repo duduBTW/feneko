@@ -1,14 +1,11 @@
+import { instance } from "@/shared/api";
 import ButtonsBottom from "@/shared/Buttons/Bottom";
 import { IFenekoTipoPedido } from "@/src/models/itemPedido";
-import Art from "@/src/pedido/body/art";
-import Design from "@/src/pedido/body/design";
-import Vtuber from "@/src/pedido/body/vTuber";
 import HeaderPedido from "@/src/pedido/header";
 import ItemPedido from "@/src/pedido/item";
 import { RootModel } from "@/src/redux/reducers";
 import { OrderModel } from "@/src/redux/reducers/orderReducer";
 import { CircularProgress } from "@material-ui/core";
-import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
@@ -29,12 +26,9 @@ export default function PedidoPage() {
   }, [orders]);
 
   const fetchData = async () => {
-    const { data: pedidos } = await axios.get(
-      `${process.env.URL_BASE}/api/pedido/item`,
-      {
-        params: { pedido: orders },
-      }
-    );
+    const { data: pedidos } = await instance.get(`/api/pedido/item`, {
+      params: { pedido: orders },
+    });
 
     setTipoPedido(pedidos);
   };

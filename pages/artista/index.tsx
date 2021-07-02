@@ -1,9 +1,9 @@
+import { instance } from "@/shared/api";
 import Artista from "@/src/artista";
-import axios from "axios";
 import { GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { data } = await axios.get(`${process.env.URL_BASE}/api/artist`);
+  const { data } = await instance.get(`/api/artist`);
 
   return {
     props: {

@@ -1,15 +1,14 @@
-import { ArtistaModelo, dataArtista } from "@/src/data";
 import { setArtistModal } from "@/src/redux/actions/globalActions";
 import { RootModel } from "@/src/redux/reducers";
 import { GlobalModel } from "@/src/redux/reducers/globalReducers";
+import { useRouter } from "next/dist/client/router";
 import React, { useCallback, useEffect, useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import ImageChanger from ".";
+import { instance } from "../api";
 import { Modal } from "../Modal";
-import { AiOutlineClose } from "react-icons/ai";
 import { ModalArtistContainer } from "./styles";
-import { useRouter } from "next/dist/client/router";
-import axios from "axios";
 
 export default function ArtistImageChanger() {
   const { artistModal } = useSelector<RootModel, GlobalModel>(
@@ -43,8 +42,8 @@ export default function ArtistImageChanger() {
   }, [artistaSelecionado]);
 
   const getArtist = async (id: String) => {
-    const { data: artistas } = await axios.get(
-      `${process.env.URL_BASE}/api/artist/` + artistModal?.[0]
+    const { data: artistas } = await instance.get(
+      `/api/artist/` + artistModal?.[0]
     );
 
     setArtistaSelecionado(artistas);
