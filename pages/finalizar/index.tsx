@@ -1,3 +1,4 @@
+import { instance } from "@/shared/api";
 import ButtonsBottom from "@/shared/Buttons/Bottom";
 import { FinalizarContainer } from "@/src/finalizar/styles";
 import { IFenekoTipoPedido } from "@/src/models/itemPedido";
@@ -41,12 +42,9 @@ export default function Finalizar() {
   }, [orders]);
 
   const fetchData = async () => {
-    const { data: pedidos } = await axios.get(
-      `${process.env.URL_BASE}/api/pedido/item`,
-      {
-        params: { pedido: orders },
-      }
-    );
+    const { data: pedidos } = await instance.get(`/api/pedido/item`, {
+      params: { pedido: orders },
+    });
 
     setTipoPedido(pedidos);
   };
