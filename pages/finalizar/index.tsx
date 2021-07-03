@@ -75,9 +75,9 @@ export default function Finalizar() {
 
     axios
       .post("https://api.emailjs.com/api/v1.0/email/send", {
-        service_id: "service_fn8g7gj",
-        template_id: "template_g4c4tii",
-        user_id: "user_pmYRF2IiMgo3UnQAGAvp6",
+        service_id: "service_av1dv5l",
+        template_id: "template_usjp05d",
+        user_id: "user_dTFVIjGTrm0Gwpqyeygih",
         template_params: {
           data: data,
           ...formData,
