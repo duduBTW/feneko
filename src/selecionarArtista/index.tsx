@@ -25,7 +25,7 @@ export default function SelecionarArtista({
   const history = useRouter();
   const dispatch = useDispatch();
   const checkedItem = useState<number[]>([]);
-  const [def, setDef] = useState<any[]>([]);
+  const [artistasNew, setArtistasNew] = useState(artistas);
   const otderItems = useSelector<RootModel, OrderItemModel[]>(
     (state) => state.order.otderItems
   );
@@ -63,12 +63,15 @@ export default function SelecionarArtista({
     let selected: any[] = [];
     artistas.map((artista) =>
       itemsSelected.some(({ artist }) => artista.artist._id == artist)
-        ? (selected = [...selected, artista.artist._id])
-        : null
+        ? null
+        : (selected = [...selected, artista])
     );
 
-    setDef(selected);
-    checkedItem[1](selected);
+    console.log(`selected`, selected);
+    console.log(`selected`, artistas);
+
+    setArtistasNew(selected);
+    // checkedItem[1](selected);
   }, []);
 
   return (
@@ -96,17 +99,30 @@ export default function SelecionarArtista({
         </AnimatePresence>
         ) {t("common:tituloArtistas")}
       </Title>
-      {artistas.map((artist, index) => (
-        <CardArtista
-          def={def}
-          checked={checkedItem}
-          select
-          artista={artist}
-          setOpen={(i: string) => setOpen(artist.artist._id, i)}
-          index={index}
-          key={index}
-        />
-      ))}
+      {artistasNew && artistasNew.length > 0 ? (
+        artistasNew.map((artist, index) => (
+          <CardArtista
+            checked={checkedItem}
+            select
+            artista={artist}
+            setOpen={(i: string) => setOpen(artist.artist._id, i)}
+            index={index}
+            key={index}
+          />
+        ))
+      ) : (
+        <div
+          style={{
+            height: "70vh",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h3>{t("common:vazio")}</h3>
+        </div>
+      )}
       <ButtonsBottom onCancel={() => history.push("/pedido")} onSubmit={send} />
     </SelecionarArtistaContainer>
   );

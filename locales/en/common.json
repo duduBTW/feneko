@@ -4,6 +4,7 @@
   "navArtistas": "Artists",
  
   "selecionado": "Selected",
+  "loading": "Loading",
   "umOuMias": "Select one or more items to continue",
 
    "tituloGaleria": "Gallery",
@@ -18,10 +19,11 @@
    "tipo": "Type",
    "descricao": "Description",
    "placeholder": "ex: I want a {{title}} with...",
+   "vazio": "Empty",
  
    "continuar": "Continue",
   "sucess": "Mensagem enviada com sucesso",
-   "selecionar": "Confirm",
+  "selecionar": "Add",
    "cancelar": "Cancel",
    "voltar": "Back",
    "finalizar": "Finish",

@@ -6,7 +6,8 @@ import { ItemPedidoCompact, ItemPedidoCompactString } from "@/src/pedido/item";
 import { RootModel } from "@/src/redux/reducers";
 import { OrderModel } from "@/src/redux/reducers/orderReducer";
 import { Title } from "@/src/styles";
-import { Box, CircularProgress, Typography } from "@material-ui/core";
+import { Box, CircularProgress } from "@material-ui/core";
+import DoneIcon from "@material-ui/icons/Done";
 import axios from "axios";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
@@ -25,6 +26,7 @@ export default function Finalizar() {
   };
 
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { orders, descriptions, otderItems } = useSelector<
     RootModel,
     OrderModel
@@ -50,6 +52,7 @@ export default function Finalizar() {
   };
 
   function sendEmail(e: any) {
+    setLoading(true);
     e.preventDefault();
     let data = "";
 
@@ -80,8 +83,13 @@ export default function Finalizar() {
           ...formData,
         },
       })
-      .then(() => setSuccess(true))
-      .catch(() => setSuccess(false));
+      .then(() => {
+        setSuccess(true);
+      })
+      .catch(() => setSuccess(false))
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   if (success) {
@@ -91,11 +99,29 @@ export default function Finalizar() {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
+        height="80vh"
         mt={6}
       >
-        <Typography variant="h3">
-          {t("common:sucess")}Message sended with sucess
-        </Typography>
+        <h2>{t("common:sucess")}</h2>
+        <br />
+        <DoneIcon fontSize="large" style={{ color: "#015150" }} />
+      </Box>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        height="80vh"
+        mt={6}
+      >
+        <h2>{t("common:loading")}</h2>
+        <br />
+        <CircularProgress size={22} style={{ color: "#015150" }} />
       </Box>
     );
   }

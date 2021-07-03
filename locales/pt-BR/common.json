@@ -2,7 +2,7 @@
  "navPedido": "Fazer Pedido",
  "navPortfolio": "Galeria",
  "navArtistas": "Artistas",
- 
+ "loading": "Carregando",
  "Habilidades": "Habilidades",
   "selecionado": "Selecionado",
   "umOuMias": "Selecione um ou mais itens para continuar",
@@ -18,11 +18,12 @@
   "descricao": "Descrição",
   "placeholder": "ex: Eu quero um/a {{title}} com...",
   "descricaoPlaceholder": "ex: Eu quero um/uma",
+  "vazio": "Vazio",
 
 
   "continuar": "Continuar",
   "sucess": "Message sended with sucess",
-  "selecionar": "Confirmar",
+  "selecionar": "Adicionar",
   "cancelar": "Cancelar",
   "voltar": "Voltar",
   "finalizar": "Finalizar",

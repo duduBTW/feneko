@@ -2,8 +2,10 @@ import ArtistImageChanger from "@/shared/ImageChanger/artist";
 import NavBar from "@/shared/Nav";
 import { setLoc } from "@/src/redux/actions/globalActions";
 import { store } from "@/src/redux/store";
+import { CircularProgress } from "@material-ui/core";
 import withRedux from "next-redux-wrapper";
 import { AppProps } from "next/app";
+import { useRouter } from "next/dist/client/router";
 import React from "react";
 import { Provider, useDispatch } from "react-redux";
 import { DefaultTheme, ThemeProvider } from "styled-components";
@@ -24,11 +26,28 @@ function App({
 }>) {
   const dispatch = useDispatch();
   const { loc } = Component as any;
+  const loading = useLoadingApp();
+
   React.useEffect(() => {
     const value = (window && loc) || 0;
 
     dispatch(setLoc(value));
   }, [loc]);
+
+  if (loading)
+    return (
+      <div
+        style={{
+          height: "90vh",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
 
   return (
     <Provider store={store}>
@@ -39,6 +58,30 @@ function App({
       </ThemeProvider>
     </Provider>
   );
+}
+
+function useLoadingApp() {
+  const [loading, setLoading] = React.useState(false);
+
+  const history = useRouter();
+  const handleStart = (url: any) => url !== history.asPath && setLoading(true);
+  const handleComplete = (url: any) => {
+    setLoading(false);
+  };
+
+  React.useEffect(() => {
+    history.events.on("routeChangeStart", handleStart);
+    history.events.on("routeChangeComplete", handleComplete);
+    history.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      history.events.off("routeChangeStart", handleStart);
+      history.events.off("routeChangeComplete", handleComplete);
+      history.events.off("routeChangeError", handleComplete);
+    };
+  }, []);
+
+  return loading;
 }
 
 const makeStore = () => store;

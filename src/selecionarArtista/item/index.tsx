@@ -14,14 +14,12 @@ export default function CardArtista({
   artista,
   select,
   checked,
-  def,
 }: {
   artista: any;
   index: number;
   setOpen: any;
   select: boolean;
   checked: [number[], React.Dispatch<React.SetStateAction<number[]>>];
-  def?: any[];
 }) {
   const history = useRouter();
   const [selecionado, setChecked] = select ? checked : [[], () => {}];
