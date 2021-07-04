@@ -65,7 +65,11 @@ export default function NavBar() {
       <NavContainer>
         <div className="content">
           <div className="items">
-            <div className="title">
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => redirect("/")}
+              className="title"
+            >
               <span>Feneko App</span>
             </div>
             <Bread />
