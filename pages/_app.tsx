@@ -13,8 +13,9 @@ import "../styles/globals.css";
 
 const theme: DefaultTheme = {
   palette: {
-    main: "#015150",
-    second: "#FC9709",
+    main: "#3b296e",
+    second: "#f66b41",
+    secondLigth: "#FFCBBB",
   },
 };
 

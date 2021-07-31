@@ -20,7 +20,13 @@ export function InfoArtista({ artista, onClick }: InfoArtistaProps) {
         </div>
       </div>
       <div className="desc">
-        {lang === "pt-BR" ? artista?.descPt : artista?.descEn}
+        {lang === "pt-BR"
+          ? `${String(artista?.descPt ?? "").substr(0, 100)}${
+              String(artista?.descPt ?? "").length > 100 ? "..." : ""
+            }`
+          : `${String(artista?.descEn ?? "").substr(0, 100)}${
+              String(artista?.descEn ?? "").length > 100 ? "..." : ""
+            }`}
       </div>
     </div>
   );

@@ -46,7 +46,6 @@ export const HomeContainer = styled.div`
           align-self: flex-end;
           justify-self: center;
         }
-        border-radius: 30px;
 
         position: relative;
       }

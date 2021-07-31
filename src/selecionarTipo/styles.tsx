@@ -64,7 +64,8 @@ export const SelecionarTipoContainer = styled.div`
 
 export const Button = styled(motion.button)`
   /* font-family: "Rubik", sans-serif; */
-  border-radius: 20px;
+
+  transition: clip-path 0.2s ease;
   border: none;
   outline: none;
   cursor: pointer;
@@ -77,28 +78,52 @@ export const Button = styled(motion.button)`
   @media only screen and (max-width: 900px) {
     width: 100%;
   }
+  font-weight: 500;
   :hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
   }
+
+  clip-path: polygon(
+    14px 0%,
+    calc(100%) 0%,
+    100% 30%,
+    100% 70%,
+    calc(100% - 14px) 100%,
+    0% 100%,
+    0% 70%,
+    0% 30%
+  );
 `;
 
 export const ButtonOutline = styled(motion.button)`
-  /* font-family: "Rubik", sans-serif; */
-  border-radius: 20px;
   border: none;
   outline: none;
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme.palette.main};
   color: ${(props) => props.theme.palette.main};
   background: white;
   padding: 10px 40px;
   width: 250px;
   font-size: 22px;
   letter-spacing: 4px;
+  background: white;
+
+  clip-path: polygon(
+    8px 0%,
+    calc(100% - 8px) 0%,
+    100% 30%,
+    100% 70%,
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0% 70%,
+    0% 30%
+  );
+
+  position: relative;
+
   @media only screen and (max-width: 900px) {
     width: 100%;
   }
   :hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
   }
 `;

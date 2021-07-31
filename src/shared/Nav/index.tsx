@@ -8,6 +8,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { AnimatePresence } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
 import setLanguage from "next-translate/setLanguage";
+import Link from "next/link";
 
 export default function NavBar() {
   const history = useRouter();
@@ -65,24 +66,16 @@ export default function NavBar() {
       <NavContainer>
         <div className="content">
           <div className="items">
-            <div
-              style={{ cursor: "pointer" }}
-              onClick={() => redirect("/")}
-              className="title"
-            >
-              <span>Feneko App</span>
-            </div>
+            <Link href="/" passHref>
+              <a className="title">Feneko App</a>
+            </Link>
+
             <Bread />
           </div>
           {!isMobile ? (
             <div className="items">
               {lisks.map((link) => (
-                <div
-                  style={{ cursor: "pointer" }}
-                  onClick={() => redirect(link.link)}
-                >
-                  {t(link.name)}
-                </div>
+                <Link href={link.link}>{t(link.name)}</Link>
               ))}
               <select
                 value={lang}

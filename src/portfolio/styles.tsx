@@ -53,7 +53,6 @@ export const PortfolioContainer = styled(motion.div)`
     }
 
     .item {
-      border-radius: 5px;
       height: auto;
       box-sizing: border-box;
       overflow: hidden;
@@ -61,7 +60,7 @@ export const PortfolioContainer = styled(motion.div)`
       position: relative;
       cursor: pointer;
 
-      border: 1px solid #015150;
+      border: 1px solid ${(props) => props.theme.palette.second};
 
       .itemBack {
         height: auto;

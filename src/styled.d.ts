@@ -6,6 +6,7 @@ declare module "styled-components" {
     palette: {
       main: string;
       second: string;
+      secondLigth: string;
     };
   }
 }

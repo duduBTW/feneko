@@ -187,7 +187,7 @@ export default function Portfolio() {
                   <motion.div
                     variants={slashMotion3}
                     style={{
-                      background: "rgba(1, 81, 80, 0.75)",
+                      background: "rgba(246, 107, 65, 0.75)",
                       clipPath: "polygon(77% 0, 100% 100%, 0 100%, 0 0)",
                       scale: 1.8,
                     }}

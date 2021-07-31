@@ -15,7 +15,6 @@ export default function ArtistImageChanger() {
     (state) => state.global
   );
   const dispatch = useDispatch();
-  const [def, setDef] = useState(0);
   const [artistaSelecionado, setArtistaSelecionado] = useState<any | null>();
 
   const history = useRouter();
@@ -79,6 +78,7 @@ export default function ArtistImageChanger() {
         <AiOutlineClose
           onClick={() => dispatch(setArtistModal(null))}
           className="closeI"
+          size={44}
         />
         {artistaSelecionado ? (
           <ImageChanger

@@ -31,8 +31,7 @@ export const ItemPedidoContainer = styled.div`
 
     /* margin-top: 50px; */
     resize: none;
-    border: 1px solid ${(props) => props.theme.palette.second};
-    border-radius: 5px;
+    border: 1px solid ${(props) => props.theme.palette.secondLigth};
     padding: 30px;
     font-size: 1.2rem;
   }
@@ -64,7 +63,7 @@ export const ItemPedidoContainer = styled.div`
 
       width: 1px;
 
-      background: ${(props) => props.theme.palette.second};
+      background: ${(props) => props.theme.palette.secondLigth};
       z-index: -1;
     }
 
@@ -221,7 +220,16 @@ export const ItemPedidoContainer = styled.div`
     img {
       max-width: 100%;
       max-height: 300px;
-      border-radius: 30px;
+      /* clip-path: polygon(
+        40% 0%,
+        calc(100%) 0%,
+        100% 30%,
+        100% 70%,
+        calc(100% - 40%) 100%,
+        30px 100%,
+        0% calc(100%),
+        0% 30%
+      ); */
     }
 
     p {
@@ -242,9 +250,9 @@ export const ItemPedidoContainer = styled.div`
 
 export const AddArtistContainer = styled(motion.div)`
   cursor: pointer;
-  border: 1px solid ${(props) => props.theme.palette.second};
+  border: 1px solid ${(props) => props.theme.palette.secondLigth};
   transition: all 0.2s ease-in-out;
-  height: 120px;
+  height: 80px;
   width: 100%;
 
   display: flex;
@@ -255,7 +263,7 @@ export const AddArtistContainer = styled(motion.div)`
   font-weight: 500;
   color: ${(props) => props.theme.palette.main};
 
-  border-radius: 5px;
+  /* border-radius: 5px; */
   background: white;
   position: relative;
   overflow: hidden;
@@ -281,7 +289,7 @@ export const AddArtistContainer = styled(motion.div)`
 export const ArtistSelectedContainer = styled.div`
   border: 1px solid ${(props) => props.theme.palette.second};
   transition: all 0.2s ease-in-out;
-  height: 160px;
+  height: 120px;
   width: calc(100% - 60px);
 
   display: flex;
@@ -292,7 +300,6 @@ export const ArtistSelectedContainer = styled.div`
 
   font-size: 22px;
   font-weight: 500;
-  border-radius: 5px;
   background: white;
 
   .info {
@@ -313,8 +320,8 @@ export const ArtistSelectedContainer = styled.div`
   }
 
   .pfp {
-    height: 80px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
 
     object-fit: cover;
     object-position: top;

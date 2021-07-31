@@ -52,10 +52,6 @@ export const NavContainer = styled.div`
     max-width: 1366px;
     margin: 0px auto;
 
-    @media only screen and (max-width: 1466px) {
-      margin: 0px 50px;
-    }
-
     @media only screen and (max-width: 600px) {
       margin: 0px 30px;
     }
@@ -71,12 +67,16 @@ export const NavContainer = styled.div`
     }
   }
 
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid ${(props) => props.theme.palette.secondLigth};
 
   .items {
     display: flex;
     gap: 60px;
     font-size: 0.9rem;
+
+    a {
+      text-decoration: none;
+    }
 
     .title {
       display: flex;
@@ -84,6 +84,8 @@ export const NavContainer = styled.div`
 
       font-weight: bold;
       font-size: 1.25rem;
+
+      color: 1px solid ${(props) => props.theme.palette.main};
     }
   }
 

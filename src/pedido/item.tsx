@@ -47,7 +47,6 @@ export default function ItemPedido({
       <div className="artist">
         {types &&
           types.map((typeI) => {
-            console.log(`typeI`, typeI._id);
             //Busca artitas selecionados do mesmo tipo
             const items: any[] = itemsSelected.filter(
               (item) => typeI._id === item.type
@@ -57,7 +56,7 @@ export default function ItemPedido({
               <>
                 <h2>
                   {lang == "en" ? typeI.tituloEn : typeI.tituloPt}{" "}
-                  {items?.length > 0 ? <span>({items.length})</span> : ""}
+                  {items?.length > 0 ? <small>({items.length})</small> : ""}
                 </h2>
                 {items.map(
                   ({ artistData, id }: { artistData: any; id: string }) => (

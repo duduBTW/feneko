@@ -10,15 +10,20 @@ export const SelecionarArtistaContainer = styled.div`
   }
 `;
 export const CardArtistaContainer = styled(motion.div)`
-  padding: 30px;
-  border: 1px solid #bebebe;
+  padding: 50px;
+  border: 1px solid ${(props) => props.theme.palette.secondLigth};
   margin: 50px 0px;
 
   display: flex;
+  align-items: center;
   cursor: pointer;
 
   :hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.015);
+  }
+
+  .exemplosArte {
+    padding-bottom: 0px;
   }
 
   @media only screen and (max-width: 1024px) {
@@ -54,8 +59,6 @@ export const CardArtistaContainer = styled(motion.div)`
     margin: 30px 0px;
   }
   gap: 30px;
-
-  border-radius: 30px;
 
   .infoArtista {
     cursor: pointer;
@@ -160,13 +163,23 @@ export const ExemplosArteContaoner = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0px 10px;
-    background: #e6ffec;
-    border-radius: 30px;
+    background: ${(props) => props.theme.palette.secondLigth};
 
     font-size: 24px;
 
+    clip-path: polygon(
+      8px 0%,
+      calc(100%) 0%,
+      100% 30%,
+      100% 70%,
+      calc(100% - 8px) 100%,
+      0% 100%,
+      0% 70%,
+      0% 30%
+    );
+
     :hover {
-      background: lightgrey;
+      /* background: ${(props) => props.theme.palette.second}; */
     }
   }
 

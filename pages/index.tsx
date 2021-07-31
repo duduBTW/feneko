@@ -30,8 +30,8 @@ export default function Home() {
             </motion.p>
 
             <Button
-              onClick={() => history.push("/pedido")}
-              style={{ width: "100%", padding: "15px 30px", borderRadius: 50 }}
+              onClick={() => history.push("/selecionarTipo")}
+              style={{ width: "100%", padding: "15px 30px" }}
               whileHover={{
                 y: -5,
               }}

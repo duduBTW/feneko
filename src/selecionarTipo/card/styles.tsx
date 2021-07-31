@@ -13,8 +13,6 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
   overflow: hidden;
   cursor: pointer;
 
-  border-radius: 30px;
-
   filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.25));
 
   @media only screen and (max-width: 900px) {
@@ -51,7 +49,6 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
   border: 1px solid ${(props) => props.theme.palette.main};
   position: relative;
   box-sizing: border-box;
-  border-radius: 30px;
 
   .label {
     position: absolute;
@@ -94,13 +91,11 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
     /* Track */
     ::-webkit-scrollbar-track {
       background: #e6ffec;
-      border-radius: 10px;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
       background: #c9c9c9;
-      border-radius: 10px;
     }
 
     /* Handle on hover */

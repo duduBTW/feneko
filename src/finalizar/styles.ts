@@ -43,7 +43,6 @@ export const FinalizarContainer = styled.div`
       padding: 20px;
       font-size: 18px;
       border: 1px solid ${(props) => props.theme.palette.second};
-      border-radius: 10px;
       resize: vertical;
     }
   }
