@@ -143,12 +143,12 @@ export default function Portfolio() {
           portItems.map(
             (
               {
-                url,
                 artist: nomeArtista,
                 _id: idArtista,
                 largura,
                 altura,
                 title,
+                miniature,
               },
               index
             ) => (
@@ -180,7 +180,7 @@ export default function Portfolio() {
                   <motion.div
                     variants={slashMotion4}
                     style={{
-                      backgroundImage: `url('${url}')`,
+                      backgroundImage: `url('${miniature}')`,
                     }}
                     className="itemBack"
                   ></motion.div>

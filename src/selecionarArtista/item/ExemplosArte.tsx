@@ -46,7 +46,7 @@ export function Arts({
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          src={image.url}
+          src={image.miniature}
           alt={image.title}
         />
       ))}
