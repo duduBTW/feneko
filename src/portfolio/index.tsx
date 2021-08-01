@@ -161,8 +161,9 @@ export default function Portfolio() {
                   gridArea: `span ${altura} / span ${largura}`,
                   // gridColumn: `span ${ratio.split("/")[0]}`,
                   // gridRow: `span ${ratio.split("/")[1]}`,
-                  minHeight: 350 * Number(altura),
-                  maxHeight: 400 * Number(altura),
+                  minHeight: `${(300 * Number(altura)) / 12}vw`,
+                  maxHeight: `${(300 * Number(altura)) / 12}px`,
+                  height: "100%",
                   position: "relative",
                 }}
               >

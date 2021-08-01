@@ -13,8 +13,6 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
   overflow: hidden;
   cursor: pointer;
 
-  filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.25));
-
   @media only screen and (max-width: 900px) {
     width: 100%;
   }
@@ -41,6 +39,7 @@ export const CardTipoContainer = styled(motion.div)<CardContainerPorps>`
 
     background-size: cover;
     background-repeat: no-repeat;
+    filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.25));
   }
 
   background-size: cover;

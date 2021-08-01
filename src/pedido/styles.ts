@@ -68,6 +68,7 @@ export const ItemPedidoContainer = styled.div`
     }
 
     h2 {
+      font-size: 20px;
       background: white;
       color: ${(props) => props.theme.palette.main};
       position: sticky;
@@ -76,6 +77,10 @@ export const ItemPedidoContainer = styled.div`
 
       padding: 0px;
       margin: 50px 0px 23px 0px;
+
+      @media only screen and (max-width: 600px) {
+        margin: 25px 0px 23px 0px;
+      }
     }
   }
 

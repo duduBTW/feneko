@@ -108,9 +108,9 @@ export default function SelecionarTipo({
               whileTap={{
                 y: 5,
               }}
-              exit={{ x: 300 }}
-              initial={{ x: -300, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              exit={{ y: 300 }}
+              initial={{ y: -300, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
               onClick={continueOrder}
             >
               {t("common:continuar")}
@@ -118,10 +118,10 @@ export default function SelecionarTipo({
           ) : (
             <motion.div
               className="selectMore"
-              initial={{ x: 200 }}
-              animate={{ x: 0 }}
+              initial={{ y: 200 }}
+              animate={{ y: 0 }}
               exit={{
-                x: 200,
+                y: 200,
                 opacity: 0,
               }}
             >

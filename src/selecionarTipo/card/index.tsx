@@ -1,7 +1,7 @@
 import { IFenekoTipoPedido } from "@/src/models/itemPedido";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, useCycle, Variants } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useEffect } from "react";
 import { TipoModel } from "..";
 import { CardTipoContainer } from "./styles";
 
@@ -23,7 +23,7 @@ const itemVariants: Variants = {
 };
 
 const titleVariants: Variants = {
-  rest: (selected) => ({ y: selected ? -80 : 0 }),
+  // rest: (selected) => ({ y: selected ? -80 : 0 }),
   hover: {
     y: -280,
   },
@@ -47,19 +47,28 @@ export default function CardTipo({
   index,
   selected,
 }: CardTipoProps) {
+  const [animete, cicleTitle] = useCycle({ y: 0 }, { y: -80 });
   const { lang, t } = useTranslation();
+
+  useEffect(() => {
+    if (selected) cicleTitle();
+  }, []);
 
   return (
     <CardTipoContainer
       initial="rest"
       animate="rest"
       whileHover="hover"
+      whileTap="tap"
       variants={itemVariants}
       selected={selected}
-      onClick={() => onClick(data._id)}
+      onClick={() => {
+        onClick(data._id);
+        cicleTitle();
+      }}
       image={data.image}
     >
-      <motion.h2 custom={selected} variants={titleVariants} className="label">
+      <motion.h2 variants={titleVariants} className="label" animate={animete}>
         {lang === "en" ? data.titleEn : data.titlePt}
       </motion.h2>
       <div className="descContainer">

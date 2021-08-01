@@ -3,6 +3,7 @@ import { IFenekoArte } from "@/src/models/art";
 import { motion } from "framer-motion";
 import React from "react";
 import { GrFormNext } from "react-icons/gr";
+import { useMediaQuery } from "react-responsive";
 import { ExemplosArteContaoner } from "../styles";
 
 export default function ExemplosArte({
@@ -14,15 +15,17 @@ export default function ExemplosArte({
   setOpen?: any;
   artes: IFenekoArte[];
 }) {
+  const isMobile = useMediaQuery({ query: "(max-width: 800px)" });
+
   return (
     <>
       <ExemplosArteContaoner
         className="exemplosArte"
         id={`exemplosArte-${index}`}
       >
-        <Change type="left" index={index} />
+        {!isMobile && <Change type="left" index={index} />}
         <Arts arts={artes} setOpen={setOpen} />
-        <Change type="right" index={index} />
+        {!isMobile && <Change type="right" index={index} />}
       </ExemplosArteContaoner>
     </>
   );

@@ -81,23 +81,28 @@ export default function SelecionarArtista({
           textAlign: "end",
           position: "sticky",
           top: 60,
-          background: "white",
           zIndex: 50,
           fontSize: 32,
+          padding: 15,
         }}
       >
-        (
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            initial={{ y: -10 }}
-            animate={{ y: 0 }}
-            exit={{ y: 10 }}
-            key={checkedItem[0].length}
-          >
-            {checkedItem[0].length}
-          </motion.div>
-        </AnimatePresence>
-        ) {t("common:tituloArtistas")}
+        <small
+          style={{ display: "flex", alignItems: "center", marginRight: 12 }}
+        >
+          (
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              initial={{ y: -10 }}
+              animate={{ y: 0 }}
+              exit={{ y: 10 }}
+              key={checkedItem[0].length}
+            >
+              {checkedItem[0].length}
+            </motion.div>
+          </AnimatePresence>
+          )
+        </small>{" "}
+        {t("common:tituloArtistas")}
       </Title>
       {artistasNew && artistasNew.length > 0 ? (
         artistasNew.map((artist, index) => (

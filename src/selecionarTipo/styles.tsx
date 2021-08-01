@@ -15,7 +15,7 @@ export const SelecionarTipoContainer = styled.div`
   }
 
   @media only screen and (max-width: 600px) {
-    padding: 30px 30px;
+    padding: 30px 15px;
   }
   min-height: calc(100vh - 160px);
   display: flex;
@@ -54,6 +54,7 @@ export const SelecionarTipoContainer = styled.div`
     margin-bottom: 30px;
     position: sticky;
     bottom: 10px;
+    background: white;
 
     .selectMore {
       font-size: 22px;

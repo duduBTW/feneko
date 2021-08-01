@@ -33,7 +33,7 @@ export const PortfolioContainer = styled(motion.div)`
 
     grid-template-columns: repeat(3, 30%);
     /* grid-auto-rows: 1fr; */
-    grid-auto-flow: dense;
+    /* grid-auto-flow: dense; */
     gap: 60px;
 
     @media only screen and (max-width: 1400px) {
