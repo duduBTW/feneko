@@ -2,12 +2,13 @@
   "navPedido": "Order",
   "navPortfolio": "Gallery",
   "navArtistas": "Artists",
+  
  
   "selecionado": "Selected",
   "loading": "Loading",
   "umOuMias": "Select one or more items to continue",
-  "seePrice": "Ver Preço",
-  "price": "Preço",
+  "seePrice": "See price",
+  "price": "Price",
 
    "tituloGaleria": "Gallery",
    "Habilidades": "Skills",
