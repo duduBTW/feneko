@@ -140,12 +140,12 @@ export function ItemPedidoCompact({
   additionalInfo,
   types,
   type,
-}: ItemPedidoProps) {
+}: any) {
   const { otderItems, descriptions } = useSelector<RootModel, OrderModel>(
     (state) => state.order
   );
   const itemsSelected = otderItems.filter((item) =>
-    types.map((i) => i._id).includes(item.type)
+    types.map((i: any) => i._id).includes(item.type)
   );
 
   const { t, lang } = useTranslation();
@@ -158,7 +158,7 @@ export function ItemPedidoCompact({
           <div className="desc">{title}</div>
         </div>
         {types &&
-          types.map((typeI) => {
+          types.map((typeI: any) => {
             console.log(`typeI`, typeI._id);
             //Busca artitas selecionados do mesmo tipo
             const items: any[] = itemsSelected.filter(
