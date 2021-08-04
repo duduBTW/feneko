@@ -33,6 +33,8 @@ export default function PedidoPage() {
     setTipoPedido(pedidos);
   };
 
+  console.log(`tipoPedidos`, tipoPedidos);
+
   return (
     <div className="default-container" style={{ maxWidth: 800 }}>
       <HeaderPedido />
@@ -40,6 +42,11 @@ export default function PedidoPage() {
         tipoPedidos.map((tipoPedido) => {
           return (
             <ItemPedido
+              value={tipoPedido.value}
+              preco={tipoPedido.preco}
+              min={lang == "en" ? tipoPedido.menEn : tipoPedido.menPt}
+              max={lang == "en" ? tipoPedido.maxEn : tipoPedido.maxPt}
+              showPrice={tipoPedido.showPrice}
               key={tipoPedido._id}
               image={tipoPedido.image}
               // @ts-ignore

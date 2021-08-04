@@ -14,8 +14,22 @@ async function tipoPedido(req: NextApiRequest, res: NextApiResponse) {
 
       let newTiposPedido: any[] = [];
       for (let i = 0; i < tiposPedido.length; i++) {
-        const { titleEn, titlePt, descEn, descPt, _id, types, image } =
-          tiposPedido[i];
+        const {
+          titleEn,
+          titlePt,
+          descEn,
+          descPt,
+          _id,
+          types,
+          image,
+          showPrice,
+          menEn,
+          maxEn,
+          menPt,
+          maxPt,
+          preco,
+          value,
+        } = tiposPedido[i];
 
         const arttypes = await FenekoTag.find({
           _id: {
@@ -25,7 +39,22 @@ async function tipoPedido(req: NextApiRequest, res: NextApiResponse) {
 
         newTiposPedido = [
           ...newTiposPedido,
-          { titleEn, titlePt, descEn, descPt, _id, image, tags: arttypes },
+          {
+            titleEn,
+            titlePt,
+            descEn,
+            descPt,
+            _id,
+            image,
+            tags: arttypes,
+            showPrice,
+            menEn,
+            maxEn,
+            menPt,
+            maxPt,
+            preco,
+            value,
+          },
         ];
       }
 

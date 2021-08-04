@@ -14,9 +14,9 @@ export default function Vtuber() {
 
   return (
     <div>
-      <Modal open={open}>
+      {/* <Modal open={open}>
         <Preco onClose={onClose} />
-      </Modal>{" "}
+      </Modal> */}
       <ItemPedido
         types={vTuberTypes}
         title="vTuber"

@@ -19,6 +19,8 @@
   "placeholder": "ex: Eu quero um/a {{title}} com...",
   "descricaoPlaceholder": "ex: Eu quero um/uma",
   "vazio": "Vazio",
+  "seePrice": "See price",
+  "price": "Price",
 
 
   "continuar": "Continuar",

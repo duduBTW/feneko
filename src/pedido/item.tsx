@@ -1,10 +1,13 @@
+import { Modal } from "@/shared/Modal";
 import useTranslation from "next-translate/useTranslation";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IFenekoPreco } from "../models/itemPedido";
 import { removeArtist, setDesc } from "../redux/actions/orderActions";
 import { RootModel } from "../redux/reducers";
 import { OrderModel } from "../redux/reducers/orderReducer";
 import { AddArtist } from "./body/AddArtist";
+import { Preco } from "./body/Preco";
 import { ArtistSelectedContainer, ItemPedidoContainer } from "./styles";
 
 interface ItemPedidoProps {
@@ -14,6 +17,11 @@ interface ItemPedidoProps {
   additionalInfo?: JSX.Element;
   types: any[];
   type: string;
+  showPrice?: boolean;
+  min?: number;
+  max?: number;
+  preco: IFenekoPreco;
+  value: number[];
 }
 
 export default function ItemPedido({
@@ -23,7 +31,17 @@ export default function ItemPedido({
   additionalInfo,
   types,
   type,
+  showPrice = false,
+  min,
+  max,
+  preco,
+  value,
 }: ItemPedidoProps) {
+  const [open, setOpen] = useState(false);
+  const onClose = () => {
+    setOpen(false);
+  };
+
   const { otderItems, descriptions } = useSelector<RootModel, OrderModel>(
     (state) => state.order
   );
@@ -45,6 +63,25 @@ export default function ItemPedido({
   return (
     <ItemPedidoContainer>
       <div className="artist">
+        {showPrice && (
+          <h2
+            style={{ cursor: "pointer" }}
+            className="price"
+            onClick={() => setOpen(true)}
+          >
+            {t("common:seePrice")}
+          </h2>
+        )}
+        <Modal open={open}>
+          <Preco
+            preco={preco}
+            title={title}
+            min={min}
+            max={max}
+            onClose={onClose}
+            value={value}
+          />
+        </Modal>
         {types &&
           types.map((typeI) => {
             //Busca artitas selecionados do mesmo tipo

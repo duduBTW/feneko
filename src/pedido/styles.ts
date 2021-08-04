@@ -345,11 +345,20 @@ export const ModalPrecoContainer = styled(motion.div)`
 
   width: 70vw;
   height: 70vh;
+  @media only screen and (max-width: 1324px) {
+    width: 95vw;
+    height: 95vh;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+  }
   background: white;
   border: 1px solid #015150;
   box-sizing: border-box;
-  box-shadow: 0px 0px 26px #015150;
-  border-radius: 30px;
+  box-shadow: 0px 0px 12px ${(props) => props.theme.palette.main};
 
   z-index: 99;
 
@@ -365,10 +374,20 @@ export const ModalPrecoContainer = styled(motion.div)`
     justify-content: space-between;
     flex-direction: column;
 
-    span {
+    @media only screen and (max-width: 1000px) {
+      height: 60%;
+      width: 100%;
+      gap: 20px;
+      padding-bottom: 20px;
+    }
+
+    .close {
       color: #930000;
       letter-spacing: 2px;
       cursor: pointer;
+      @media only screen and (max-width: 1000px) {
+        align-self: flex-end;
+      }
     }
 
     h1 {
@@ -380,15 +399,25 @@ export const ModalPrecoContainer = styled(motion.div)`
       letter-spacing: 0.2em;
 
       color: ${(props) => props.theme.palette.main};
+
       /* transform: translateX(-100%) translateY(-100%) rotate(90deg); */
     }
   }
 
   img {
     max-height: 85vh;
+
+    @media only screen and (max-width: 1000px) {
+      max-height: 60vh;
+      align-self: center;
+    }
   }
   .slide {
     height: 100%;
+    @media only screen and (max-width: 1000px) {
+      width: 100%;
+      align-items: flex-start;
+    }
 
     display: flex;
     flex-direction: column;
@@ -402,12 +431,9 @@ export const ModalPrecoContainer = styled(motion.div)`
       font-weight: 300;
     }
 
-    .price {
+    .priceLabel {
       color: ${(props) => props.theme.palette.second};
       font-size: 0.8rem;
-      :hover {
-        background: rgba(0, 0, 0, 0.3);
-      }
     }
   }
 `;
